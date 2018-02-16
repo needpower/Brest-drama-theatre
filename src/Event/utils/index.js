@@ -1,4 +1,1 @@
-export function dateToHumanFriendlyFormat(date) {
-  // TODO
-  return date;
-}
+export * from './dateToHumanFriendlyFormat.js';
