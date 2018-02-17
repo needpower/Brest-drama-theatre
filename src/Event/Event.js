@@ -10,12 +10,12 @@ const Parent = Record({
   author: new Person(),
   characters: new PersonsList(),
   description: null, // can include html, images. Must be like html container
-  duration: 0,
+  duration: 0, // minutes
   genre: null,
-  hall: 'big', // big | small. anything else?
-  language: 'ru', // ru | en | by. anything else?
+  hall: 'big', // big | small (anything else?). Enum type
+  language: 'ru', // ru | en | by (anything else?)
   poster: new Image(),
-  price: 0,
+  price: 0, // BYN
   start: new Date(),
   title: '',
 });
@@ -30,13 +30,13 @@ export default class Event extends Parent {
    * can't buy tickets for this event
    * @param {string} event.author - An author, director of show
    * @param {string[]} event.characters - People names who play roles in event
-   * @param {??} event.description - About event. Can include html, images
+   * @param {string} event.description - About event. Can include html, images
    * @param {!number} event.duration - How long an event will take
    * @param {?string} event.genre
    * @param {string} event.hall - In what hall event will occurs
    * @param {string} event.language
    * @param {string} event.poster - A path to cover of event
-   * @param {?number} event.price
+   * @param {?(number|number[])} event.price. Several prices if no online ticket sale
    * @param {Date} event.start - when event will start
    * @param {!string} event.title - Title of event
    */
