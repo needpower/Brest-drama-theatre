@@ -1,1 +1,1 @@
-export * from './dateToHumanFriendlyFormat.js';
+export * from './dateToHumanFriendlyFormat';
