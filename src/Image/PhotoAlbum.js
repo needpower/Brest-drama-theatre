@@ -14,7 +14,8 @@ export default class PhotoAlbum extends Parent {
    * @param {(Object[]|Image[])} photo
    */
   constructor(photos) {
-    const imageList = photos.map(photo =>
+    const validatedPhotos = photos || [];
+    const imageList = validatedPhotos.map(photo =>
       ((photo instanceof Image) ? photo : new Image(photo)));
 
     super(fromJS({ photos: imageList }));

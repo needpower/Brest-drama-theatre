@@ -24,6 +24,6 @@ describe('Event model', () => {
     expect(PersonsList).toHaveBeenCalledTimes(1);
     // event data was received
     expect(typeof event.get('title')).toBe('string');
-    expect(event.get('title')).toBeGreaterThan(0);
+    expect(event.get('price')).toBeGreaterThan(0);
   });
 });
