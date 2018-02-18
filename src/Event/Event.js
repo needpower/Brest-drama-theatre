@@ -36,7 +36,7 @@ export default class Event extends Parent {
    * @param {string} event.hall - In what hall event will occurs
    * @param {string} event.language
    * @param {string} event.poster - A path to cover of event
-   * @param {?(number|number[])} event.price. Several prices if no online ticket sale
+   * @param {?(number[])} event.price. Several prices while no online ticket sale
    * @param {Date} event.start - when event will start
    * @param {!string} event.title - Title of event
    */
