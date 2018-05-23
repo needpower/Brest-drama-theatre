@@ -17,3 +17,9 @@ export const getEvents = () => dispatch =>
     .then(res => res.json())
     .then(events => dispatch(getEventsSuccess(events)))
     .catch(error => dispatch(getEventsFailure(error)));
+
+export const createEvent = 'CreateEvent';
+
+export const updateEvent = 'updateEvent';
+
+export const deleteEvent = 'deleteEvent';
