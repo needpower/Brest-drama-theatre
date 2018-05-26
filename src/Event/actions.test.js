@@ -11,7 +11,7 @@ describe('Event actions', () => {
 
   it('All events are received', () => {
     const expectedResult = [eventData1, eventData2];
-    fetchMock.get('http://mockserver.io/sasha', {
+    fetchMock.get('/getEvents', {
       body: { events: expectedResult },
       headers: { 'content-type': 'application/json' },
     });
