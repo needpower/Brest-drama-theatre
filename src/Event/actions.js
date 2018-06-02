@@ -1,4 +1,4 @@
-import { get, post, put, remove } from '../infrastructure/http';
+import axios from 'axios';
 
 export const GET_EVENTS_SUCCESS = 'GetEventsSuccess';
 export const getEventsSuccess = events => ({
@@ -13,7 +13,8 @@ export const getEventsFailure = error => ({
 });
 
 export const getEvents = () => dispatch =>
-  get('http://mock.io/getEvents')
+  axios
+    .get('http://mock.io/getEvents')
     .then(events => dispatch(getEventsSuccess(events)))
     .catch(error => dispatch(getEventsFailure(error)));
 
@@ -30,7 +31,8 @@ export const createEventFailure = error => ({
 });
 
 export const createEvent = event => dispatch =>
-  post('/createEvent', event)
+  axios
+    .post('/createEvent', event)
     .then(createdEvent => dispatch(createEventSuccess(createdEvent)))
     .catch(error => dispatch(createEventFailure(error)));
 
@@ -47,7 +49,8 @@ export const updateEventFailure = error => ({
 });
 
 export const updateEvent = event => dispatch =>
-  put('/updateEvent', event)
+  axios
+    .put('/updateEvent', event)
     .then(updatedEvent => dispatch(updateEventSuccess(updatedEvent)))
     .catch(error => dispatch(updateEventFailure(error)));
 
@@ -64,6 +67,9 @@ export const deleteEventFailure = error => ({
 });
 
 export const deleteEvent = eventId => dispatch =>
-  remove(`/deleteEvent/${eventId}`)
+  axios
+    .delete('/deleteEvent', {
+      params: eventId,
+    })
     .then(deletedEventId => dispatch(deleteEventSuccess(deletedEventId)))
     .catch(error => dispatch(deleteEventFailure(error)));

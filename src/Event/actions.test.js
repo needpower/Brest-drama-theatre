@@ -1,29 +1,26 @@
-import fetchMock from 'fetch-mock';
+import axios from 'axios';
 import mockStore from '../infrastructure/mockStore';
 import * as actions from './actions';
 import { eventData1, eventData2 } from './__mocks__';
 
+jest.mock('axios');
 describe('Event actions', () => {
-  afterEach(() => {
-    fetchMock.reset();
-    fetchMock.restore();
+  let store;
+
+  beforeEach(() => {
+    store = mockStore({ events: [] });
   });
 
-  it('All events are received', () => {
-    const expectedResult = [eventData1, eventData2];
-    fetchMock.get('/getEvents', {
-      body: { events: expectedResult },
-      headers: { 'content-type': 'application/json' },
-    });
+  it('should fetch all events', () => {
+    const expectedEvents = [eventData1, eventData2];
+    axios.get.mockImplementation(() => Promise.resolve(expectedEvents));
 
-    // expected actions
     const expectedActions = [
       {
         type: actions.GET_EVENTS_SUCCESS,
-        payload: { events: expectedResult },
+        payload: expectedEvents,
       },
     ];
-    const store = mockStore({ events: [] });
     return store.dispatch(actions.getEvents()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
