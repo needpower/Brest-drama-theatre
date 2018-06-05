@@ -1,7 +1,14 @@
 export const eventData1 = {
+  id: 100001,
   ageRestrictions: 14,
   author: 'Viktor Hlinka',
-  characters: ['Petr Sterlikov', 'Mark Zafton', 'Valera Lyubchuk', 'Maks Lyubchuk', 'Artem Lyubchuk'],
+  characters: [
+    'Petr Sterlikov',
+    'Mark Zafton',
+    'Valera Lyubchuk',
+    'Maks Lyubchuk',
+    'Artem Lyubchuk',
+  ],
   description: 'Трагикомедия обо всём по чуть-чуть',
   duration: 118,
   genre: 'Трагикомедия в 2-х действиях',
@@ -14,6 +21,7 @@ export const eventData1 = {
 };
 
 export const eventData2 = {
+  id: 98367700,
   ageRestrictions: 12,
   author: 'Эльдар Рязанов',
   characters: ['Сергей Свиридов', 'Анна Заболоцкая', 'Valera Lyubchuk', 'Maks Lyubchuk'],
@@ -27,4 +35,3 @@ export const eventData2 = {
   start: '2018-03-27T12:48:07.445Z',
   title: 'Соседи',
 };
-
