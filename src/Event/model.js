@@ -1,6 +1,6 @@
 import { List, Record, fromJS } from 'immutable';
-import Image from '../Image/Image';
-import Person from '../Person/Person';
+import Image from '../Image/model';
+import Person from '../Person/model';
 
 const Parent = Record({
   ageRestrictions: null,
@@ -40,14 +40,14 @@ export default class Event extends Parent {
   constructor(event) {
     // @TODO convert date to human friendly format
     const poster = new Image(event.poster);
-    const actors = List(event.actors.map(actor => new Person(actor)));
+    const characters = List(event.characters.map(character => new Person(character)),);
     const author = new Person(event.author);
 
     const immutableEvent = fromJS(Object.assign({}, event, {
-      poster,
-      actors,
-      author,
-    }));
+        poster,
+        characters,
+        author,
+      }),);
     super(immutableEvent);
   }
 }

@@ -1,6 +1,5 @@
 import { Record, List, fromJS } from 'immutable';
-import Image from './Image';
-
+import Image from './model';
 
 const Parent = Record({
   photos: List(),
@@ -15,8 +14,7 @@ export default class PhotoAlbum extends Parent {
    */
   constructor(photos) {
     const validatedPhotos = photos || [];
-    const imageList = validatedPhotos.map(photo =>
-      ((photo instanceof Image) ? photo : new Image(photo)));
+    const imageList = validatedPhotos.map(photo => (photo instanceof Image ? photo : new Image(photo)),);
 
     super(fromJS({ photos: imageList }));
   }
