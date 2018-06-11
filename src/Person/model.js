@@ -1,11 +1,9 @@
 import { List, Record, fromJS } from 'immutable';
-import PhotoAlbum from '../Image/PhotoAlbum';
-
 
 const Parent = Record({
   about: null, // can include html, images. Must be like html container
   name: '',
-  photos: new PhotoAlbum(),
+  photos: List(),
   roles: List(), // can be director, producer and writer at the same time? Or just one role?
 });
 
@@ -30,7 +28,7 @@ export default class Person extends Parent {
     }
     // Whole information was provided
     if (typeof person === 'object') {
-      const photos = new PhotoAlbum(person.photos);
+      const photos = fromJS(person.photos);
       const roles = List(person.roles);
       immutablePerson = fromJS(Object.assign({}, person, {
         photos,

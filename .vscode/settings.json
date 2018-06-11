@@ -3,5 +3,6 @@
   "editor.formatOnPaste": true,
   "eslint.autoFixOnSave": true,
   "editor.tabSize": 2,
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "prettier.eslintIntegration": true
 }

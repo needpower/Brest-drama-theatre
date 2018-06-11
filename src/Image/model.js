@@ -15,7 +15,7 @@ export default class Image extends Parent {
    *
    * @param {Object} image
    * @param {number} image.height
-   * @param {string} image.path - a path to image where it stored
+   * @param {string} image.path - a path to image where it's stored
    * @param {number} image.weight
    * @param {number} image.width
    */
