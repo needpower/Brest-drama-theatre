@@ -1,16 +1,56 @@
-import { img1, img2 } from '../../Image/__mocks__';
-
 export const anton = {
   name: 'Антон Красильников',
-  photos: [img1],
+  role: 'Режиссёр',
+  photos: [
+    {
+      path: './images/img1.png',
+      height: 1080,
+      weight: 2.2,
+      width: 1920,
+    },
+  ],
 };
 
 export const alena = {
   name: 'Алёна Савицкая',
-  photos: [img1, img2],
+  role: 'Актриса, заслуженная артистка Монголии',
+  photos: [
+    {
+      path: './images/img1.png',
+      height: 1080,
+      weight: 2.2,
+      width: 1920,
+    },
+    {
+      path: './images/img2.jpg',
+      height: 1080,
+      weight: 1.7,
+      width: 1920,
+    },
+  ],
 };
 
 export const viktor = {
   name: 'Виктор Голополосов',
-  photos: [img2],
+  role: 'Сценарист, постановщик',
+  photos: [
+    {
+      path: './images/img1.png',
+      height: 1080,
+      weight: 2.2,
+      width: 1920,
+    },
+    {
+      path: './images/gogol_poster.jpg',
+      height: 540,
+      weight: 1.5,
+      width: 900,
+    },
+    {
+      path: './images/museums_night.png',
+      height: 620,
+      weight: 2,
+      width: 1200,
+    },
+  ],
 };
