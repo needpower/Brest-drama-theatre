@@ -1,24 +1,8 @@
-import { List, Record, fromJS } from 'immutable';
 import Image from '../Image/model';
 import Person from '../Person/model';
 
-const Parent = Record({
-  ageRestrictions: null,
-  author: new Person(),
-  characters: List(),
-  description: null, // can include html, images. Must be like html container
-  duration: 0, // minutes
-  genre: null,
-  hall: 'big', // big | small (anything else?). Enum type
-  language: 'ru', // ru | en | by (anything else?)
-  poster: new Image(),
-  price: 0, // BYN
-  start: new Date(),
-  title: '',
-});
-
 /** Class representing an event */
-export default class Event extends Parent {
+export default class Event {
   /**
    * Create an event
    *
@@ -38,16 +22,11 @@ export default class Event extends Parent {
    * @param {!string} event.title - Title of event
    */
   constructor(event) {
-    // @TODO convert date to human friendly format
-    const poster = new Image(event.poster);
-    const characters = List(event.characters.map(character => new Person(character)),);
-    const author = new Person(event.author);
-
-    const immutableEvent = fromJS(Object.assign({}, event, {
-        poster,
-        characters,
-        author,
-      }),);
-    super(immutableEvent);
+    // @TODO convert date to a human friendly format
+    this.poster = new Image(event.poster);
+    this.characters = event.characters.map(character => new Person(character));
+    this.author = new Person(event.author);
   }
+
+  // @TODO getters and setters for fields
 }
