@@ -21,6 +21,12 @@ export const put = (url, data) =>
     .then(response => response)
     .catch(error => error);
 
+export const patch = (url, data) =>
+  httpClient
+    .patch(url, data)
+    .then(response => response)
+    .catch(error => error);
+
 export const deleteItem = (url, id) =>
   httpClient
     .delete(url, {
