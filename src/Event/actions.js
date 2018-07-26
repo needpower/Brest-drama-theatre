@@ -1,10 +1,13 @@
 import cuid from 'cuid';
 import _ from 'lodash';
 import reduxCRUD from 'redux-crud';
-import { deleteItem, get, patch, post } from '../infrastructure/http';
-import TheatreEvent from './model';
+import httpService from '../infrastructure/http';
+import TheatreEvent, { MODEL_NAME } from './model';
 
-const baseActionCreators = reduxCRUD.actionCreatorsFor('events');
+const baseActionCreators = reduxCRUD.actionCreatorsFor(MODEL_NAME);
+const {
+  deleteItem, get: getItems, patch, post,
+} = httpService;
 
 const {
   fetchStart,
@@ -25,11 +28,13 @@ const eventsActionCreators = {
   /**
    * @param {number[]} [ids] If not provided, all events will be fetched
    */
-  get(ids, replaceExisting = true) {
+  get(ids = [], replaceExisting = true) {
     return (dispatch) => {
       dispatch(fetchStart());
 
-      return get('getEvents', ids)
+      return getItems('getEvents', {
+        params: { ids },
+      })
         .then(events => dispatch(fetchSuccess(events, { replace: replaceExisting })))
         .catch(error => dispatch(fetchError(error)));
     };
