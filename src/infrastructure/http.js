@@ -30,7 +30,7 @@ const patch = (url, data) =>
 const deleteItem = (url, id) =>
   httpClient
     .delete(url, {
-      params: id,
+      params: { id },
     })
     .then(response => response)
     .catch(error => error);

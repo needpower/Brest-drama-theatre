@@ -10,7 +10,15 @@ describe('Theatre events actions', () => {
   let store;
 
   const {
-    get, fetchStart, fetchSuccess, create, createStart, createSuccess,
+    get,
+    fetchStart,
+    fetchSuccess,
+    create,
+    createStart,
+    createSuccess,
+    update,
+    updateStart,
+    updateSuccess,
   } = actions;
 
   const initializeDB = (mockData) => {
@@ -71,31 +79,37 @@ describe('Theatre events actions', () => {
   });
 
   test('New event is created and stored', () => {
-    const newEventID = cuid();
+    const newEventID = 999991111;
     const createdEvent = newEvent(newEventID);
     const expectedActions = [createStart(createdEvent), createSuccess(createdEvent, newEventID)];
 
+    expect.assertions(1);
     return store.dispatch(create(createdEvent)).then(() => {
+      // expect(store.getState().events).toHaveLength(3);
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
-  test.skip('event is updated', () => {
-    axios.put.mockImplementation(() => Promise.resolve(eventData2));
-    const expectedActions = [actions.updateEventSuccess(eventData2)];
+  test('Event is updated', () => {
+    const eventPatch = {
+      id: eventData2.id,
+      author: 'Инокентий Малышев',
+      duration: 30,
+      price: 50,
+    };
 
-    return store.dispatch(actions.updateEvent(eventData1)).then(() => {
+    const updatedEvent = {
+      ...eventData2,
+      ...eventPatch,
+    };
+
+    const expectedActions = [updateStart(eventPatch), updateSuccess(updatedEvent)];
+
+    expect.assertions(1);
+    return store.dispatch(update(eventPatch)).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
-  test.skip('event is deleted', () => {
-    const eventIdToDelete = eventData1.id;
-    const expectedActions = [actions.deleteEventSuccess(eventIdToDelete)];
-    axios.delete.mockImplementation(() => Promise.resolve(eventIdToDelete));
-
-    return store.dispatch(actions.deleteEvent(eventIdToDelete)).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
+  test.skip('Event is deleted', () => {});
 });

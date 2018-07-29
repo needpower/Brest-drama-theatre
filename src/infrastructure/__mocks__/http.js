@@ -1,5 +1,5 @@
 import axios from 'axios';
-import cuid from 'cuid';
+import _ from 'lodash';
 
 // automatic mock
 jest.mock('axios');
@@ -23,10 +23,34 @@ const get = (url, config) => {
   return Promise.resolve(mockDB.filter(mockItem => payloadIDs.includes(mockItem.id)));
 };
 
-const post = (url, data) => Promise.resolve(data);
+const post = (url, data) => {
+  mockDB.push(data);
+  return Promise.resolve(data);
+};
+
+const patch = (url, data) => {
+  const source = _.find(mockDB, { id: data.id });
+  if (!source) {
+    return Promise.reject(new Error('Source item not found'));
+  }
+
+  const patchedSource = {
+    ...source,
+    ...data,
+  };
+
+  return Promise.resolve(patchedSource);
+};
+
+const deleteItem = (url, id) => {
+  const deletedItem = _.remove(mockDB, item => item.id === id);
+  return Promise.resolve(deletedItem);
+};
 
 http.setMockDB = setMockDB;
 http.get = get;
 http.post = post;
+http.patch = patch;
+http.deletedItem = deleteItem;
 
 export default http;

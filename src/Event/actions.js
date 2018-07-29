@@ -60,23 +60,23 @@ const eventsActionCreators = {
     };
   },
 
-  update(event) {
+  update(payload) {
     return (dispatch) => {
-      dispatch(updateStart(event));
+      dispatch(updateStart(payload));
 
-      return patch('updateEvent', event)
+      return patch('updateEvent', payload)
         .then(updatedEvent => dispatch(updateSuccess(updatedEvent)))
-        .catch(error => dispatch(updateError(error, event)));
+        .catch(error => dispatch(updateError(error, payload)));
     };
   },
 
-  delete(event) {
+  delete(eventId) {
     return (dispatch) => {
-      dispatch(deleteStart(event));
+      dispatch(deleteStart(eventId));
 
-      return deleteItem('deleteEvent', event)
-        .then(updatedEvent => dispatch(deleteSuccess(updatedEvent)))
-        .catch(error => dispatch(deleteError(error, event)));
+      return deleteItem('deleteEvent', eventId)
+        .then(deletedEvent => dispatch(deleteSuccess(deletedEvent)))
+        .catch(error => dispatch(deleteError(error, eventId)));
     };
   },
 };
