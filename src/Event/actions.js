@@ -1,4 +1,3 @@
-import cuid from 'cuid';
 import _ from 'lodash';
 import reduxCRUD from 'redux-crud';
 import httpService from '../infrastructure/http';
@@ -45,18 +44,15 @@ const eventsActionCreators = {
    */
   create(event) {
     return (dispatch) => {
-      const cid = cuid();
-      // Add new event to store before we get a real created one from server (optimistic creation)
-      const newEvent = {
-        ...event,
-        id: cid,
-      };
+      dispatch(createStart(event));
 
-      dispatch(createStart(newEvent));
-
-      return post('createEvent', newEvent)
-        .then(createdEvent => dispatch(createSuccess(createdEvent, cid)))
-        .catch(error => dispatch(createError(error, event)));
+      return (
+        post('createEvent', event)
+          // Need to pass client generated ky for optimistic rendering,
+          // i.e when created event will be returned from server, we can replace temporary with it
+          .then(createdEvent => dispatch(createSuccess(createdEvent, createdEvent.id)))
+          .catch(error => dispatch(createError(error, event)))
+      );
     };
   },
 
@@ -70,13 +66,13 @@ const eventsActionCreators = {
     };
   },
 
-  delete(eventId) {
+  delete(event) {
     return (dispatch) => {
-      dispatch(deleteStart(eventId));
+      dispatch(deleteStart(event));
 
-      return deleteItem('deleteEvent', eventId)
+      return deleteItem('deleteEvent', event.id)
         .then(deletedEvent => dispatch(deleteSuccess(deletedEvent)))
-        .catch(error => dispatch(deleteError(error, eventId)));
+        .catch(error => dispatch(deleteError(error, event)));
     };
   },
 };

@@ -1,4 +1,3 @@
-import cuid from 'cuid';
 import httpService from '../../infrastructure/http';
 import mockStore from '../../infrastructure/mockStore';
 import actions from '../actions';
@@ -19,6 +18,9 @@ describe('Theatre events actions', () => {
     update,
     updateStart,
     updateSuccess,
+    delete: deleteEvent,
+    deleteStart,
+    deleteSuccess,
   } = actions;
 
   const initializeDB = (mockData) => {
@@ -85,7 +87,6 @@ describe('Theatre events actions', () => {
 
     expect.assertions(1);
     return store.dispatch(create(createdEvent)).then(() => {
-      // expect(store.getState().events).toHaveLength(3);
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
@@ -111,5 +112,12 @@ describe('Theatre events actions', () => {
     });
   });
 
-  test.skip('Event is deleted', () => {});
+  test('Event is deleted', () => {
+    const expectedActions = [deleteStart(eventData1), deleteSuccess(eventData1)];
+
+    expect.assertions(1);
+    return store.dispatch(deleteEvent(eventData1)).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
 });

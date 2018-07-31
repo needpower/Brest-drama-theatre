@@ -44,13 +44,13 @@ const patch = (url, data) => {
 
 const deleteItem = (url, id) => {
   const deletedItem = _.remove(mockDB, item => item.id === id);
-  return Promise.resolve(deletedItem);
+  return Promise.resolve(deletedItem.pop());
 };
 
 http.setMockDB = setMockDB;
 http.get = get;
 http.post = post;
 http.patch = patch;
-http.deletedItem = deleteItem;
+http.deleteItem = deleteItem;
 
 export default http;
