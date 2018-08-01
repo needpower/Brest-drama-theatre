@@ -49,7 +49,7 @@ const eventsActionCreators = {
       return (
         post('createEvent', event)
           // Need to pass client generated ky for optimistic rendering,
-          // i.e when created event will be returned from server, we can replace temporary with it
+          // i.e when created event will be returned from server, we can replace temporary with saved one
           .then(createdEvent => dispatch(createSuccess(createdEvent, createdEvent.id)))
           .catch(error => dispatch(createError(error, event)))
       );
