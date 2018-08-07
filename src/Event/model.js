@@ -1,3 +1,5 @@
+import { Image } from '../Image/model';
+
 export const MODEL_NAME = 'events';
 
 /** Class representing an event
@@ -11,6 +13,7 @@ export const MODEL_NAME = 'events';
  * @param {!number} event.duration - How long an event will take
  * @param {?string} event.genre
  * @param {string} event.hall - In what hall event will occurs
+ * @param {Image[]} images - photo gallery of this event in the past. See {@link Image}
  * @param {string} event.language
  * @param {string} event.poster - A path to cover of event
  * @param {?(number[])} event.price. Several prices while no online ticket sale
@@ -18,5 +21,5 @@ export const MODEL_NAME = 'events';
  * @param {!string} event.title - Title of event
  */
 export default function Event(event) {
-  return Object.freeze({});
+  return Object.freeze(event);
 }

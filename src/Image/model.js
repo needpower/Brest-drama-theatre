@@ -1,25 +1,15 @@
-import { Record, fromJS } from 'immutable';
+/**
+ * @typedef {Object} Image
+ * @property {number} height
+ * @property {string} path
+ * @property {number} size in KB
+ * @property {number} width
+ */
 
-
-const Parent = Record({
-  hieght: null, // expected in px
-  path: '', // TODO: use default image if no image was provided
-  weight: null, // expected in Kb
-  width: null, // expected in px
-});
-
-/** Class representing a single image */
-export default class Image extends Parent {
-  /**
-   * Creates an image
-   *
-   * @param {Object} image
-   * @param {number} image.height
-   * @param {string} image.path - a path to image where it's stored
-   * @param {number} image.weight
-   * @param {number} image.width
-   */
-  constructor(image) {
-    super(fromJS(image));
-  }
+/**
+ * Class representing a single image
+ * @param {Image} image
+ */
+export default function Image(image) {
+  return Object.freeze(image);
 }
