@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { extend } from 'lodash';
 import reduxCRUD from 'redux-crud';
 import httpService from '../infrastructure/http';
 import TheatreEvent, { MODEL_NAME } from './model';
@@ -57,6 +57,9 @@ const eventsActionCreators = {
     };
   },
 
+  /**
+   * @param {Object} payload Part of event that have to be updated
+   */
   update(payload) {
     return (dispatch) => {
       dispatch(updateStart(payload));
@@ -67,6 +70,9 @@ const eventsActionCreators = {
     };
   },
 
+  /**
+   * @param {TheatreEvent} event
+   */
   delete(event) {
     return (dispatch) => {
       dispatch(deleteStart(event));
@@ -78,4 +84,4 @@ const eventsActionCreators = {
   },
 };
 
-export default _.extend(baseActionCreators, eventsActionCreators);
+export default extend(baseActionCreators, eventsActionCreators);

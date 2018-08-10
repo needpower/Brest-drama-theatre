@@ -4,7 +4,10 @@
  * @property {string} path
  * @property {number} size in KB
  * @property {number} width
+ * @property {?string} desciption
  */
+
+export const MODEL_NAME = 'images';
 
 /**
  * Class representing a single image
