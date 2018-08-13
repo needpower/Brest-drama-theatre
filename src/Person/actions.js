@@ -1,7 +1,7 @@
 import { extend } from 'lodash';
 import reduxCRUD from 'redux-crud';
 import httpService from '../infrastructure/http';
-import { MODEL_NAME, Event } from './model';
+import { MODEL_NAME, Person } from './model';
 
 const baseActionCreators = reduxCRUD.actionCreatorsFor(MODEL_NAME);
 const {
@@ -23,7 +23,10 @@ const {
   deleteError,
 } = baseActionCreators;
 
-const eventsActionCreators = {
+export const ADD_PHOTOS = 'ADD_PHOTOS';
+export const REMOVE_PHOTOS = 'REMOVE_PHOTOS';
+
+const personsActionCreators = {
   /**
    * @param {number[]} [ids] If not provided, all events will be fetched
    */
@@ -31,57 +34,73 @@ const eventsActionCreators = {
     return (dispatch) => {
       dispatch(fetchStart());
 
-      return getItems('getEvents', {
+      return getItems('getPersons', {
         params: { ids },
       })
-        .then(events => dispatch(fetchSuccess(events, { replace: replaceExisting })))
+        .then(persons => dispatch(fetchSuccess(persons, { replace: replaceExisting })))
         .catch(error => dispatch(fetchError(error)));
     };
   },
 
   /**
-   * @param {Event} event
+   * @param {Person} person
    */
-  create(event) {
+  add(person) {
     return (dispatch) => {
-      dispatch(createStart(event));
+      dispatch(createStart(person));
 
       return (
-        post('createEvent', event)
+        post('addPerson', person)
           // Need to pass client generated ky for optimistic rendering,
           // i.e when created event will be returned from server,
           // we can replace temporary with saved one
-          .then(createdEvent => dispatch(createSuccess(createdEvent, createdEvent.id)))
-          .catch(error => dispatch(createError(error, event)))
+          .then(addedPerson => dispatch(createSuccess(addedPerson, addedPerson.id)))
+          .catch(error => dispatch(createError(error, person)))
       );
     };
   },
 
+  addPhotos(personId, photos) {
+    return {
+      type: ADD_PHOTOS,
+      personId,
+      photos,
+    };
+  },
+
+  removePhotos(personId, photos) {
+    return {
+      type: REMOVE_PHOTOS,
+      personId,
+      photos,
+    };
+  },
+
   /**
-   * @param {Object} payload Part of event that have to be updated
+   * @param {Object} payload Part of person info that have to be updated
    */
   update(payload) {
     return (dispatch) => {
       dispatch(updateStart(payload));
 
-      return patch('updateEvent', payload)
+      return patch('updatePerson', payload)
         .then(updatedEvent => dispatch(updateSuccess(updatedEvent)))
         .catch(error => dispatch(updateError(error, payload)));
     };
   },
 
   /**
-   * @param {Event} event
+   * @param {Person} person
    */
-  delete(event) {
+  delete(person) {
     return (dispatch) => {
-      dispatch(deleteStart(event));
+      dispatch(deleteStart(person));
 
-      return deleteItem('deleteEvent', event.id)
-        .then(deletedEvent => dispatch(deleteSuccess(deletedEvent)))
-        .catch(error => dispatch(deleteError(error, event)));
+      return deleteItem('deleteEvent', person.id)
+        .then(deletedPerson => dispatch(deleteSuccess(deletedPerson)))
+        .catch(error => dispatch(deleteError(error, person)));
     };
   },
 };
 
-export default extend(baseActionCreators, eventsActionCreators);
+export default extend(baseActionCreators, personsActionCreators);

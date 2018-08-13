@@ -1,7 +1,7 @@
 import { extend } from 'lodash';
 import reduxCRUD from 'redux-crud';
 import httpService from '../infrastructure/http';
-import Image, { MODEL_NAME } from './model';
+import { MODEL_NAME, Image } from './model';
 
 const baseActionCreators = reduxCRUD.actionCreatorsFor(MODEL_NAME);
 const { deleteItem, get: getItems, post } = httpService;
