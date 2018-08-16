@@ -1,7 +1,11 @@
 import { extend } from 'lodash';
 import reduxCRUD from 'redux-crud';
 import httpService from '../infrastructure/http';
+<<<<<<< HEAD
 import { MODEL_NAME, Event } from './model';
+=======
+import { MODEL_NAME } from './model';
+>>>>>>> Events refactoring
 
 const baseActionCreators = reduxCRUD.actionCreatorsFor(MODEL_NAME);
 const {
@@ -22,6 +26,8 @@ const {
   deleteSuccess,
   deleteError,
 } = baseActionCreators;
+export const addImages = 'EVENTS_ADD_IMAGES';
+export const deleteImages = 'EVENTS_DELETE_IMAGES';
 
 const eventsActionCreators = {
   /**
@@ -71,6 +77,33 @@ const eventsActionCreators = {
   },
 
   /**
+<<<<<<< HEAD
+=======
+   * @param {number} eventId
+   * @param {number[]} images list of images to attach to event
+   */
+  addImages(eventId, images) {
+    return {
+      type: addImages,
+      eventId,
+      images,
+    };
+  },
+
+  /**
+   * @param {number} eventId
+   * @param {number[]} images list of images that have to be deleted
+   */
+  deleteImages(eventId, images) {
+    return {
+      type: deleteImages,
+      eventId,
+      images,
+    };
+  },
+
+  /**
+>>>>>>> Events refactoring
    * @param {Event} event
    */
   delete(event) {

@@ -1,6 +1,10 @@
+import httpService from '../../infrastructure/http';
 import actions from '../actions';
 import reducer from '../reducer';
 import { eventData1, eventData2 } from '../__mocks__/payload';
+import { img1, museumsNight } from '../../Image/__mocks__/payload';
+
+jest.mock('../../infrastructure/http');
 
 const {
   fetchSuccess,
@@ -15,6 +19,10 @@ const {
 
 describe('Events reducer', () => {
   let state;
+
+  const initializeDB = (mockData) => {
+    httpService.setMockDB(mockData);
+  };
 
   const resetState = () => {
     state = [];
@@ -37,6 +45,7 @@ describe('Events reducer', () => {
   });
 
   beforeEach(() => {
+    initializeDB([eventData1, eventData2]);
     resetState();
   });
 
@@ -50,7 +59,7 @@ describe('Events reducer', () => {
     expect(reducer(state, fetchSuccess([eventData1, eventData2]))).toEqual(expectedState);
   });
 
-  test('Should add event to state, created by user', () => {
+  test('Should add created event to state', () => {
     const newEventId = 900011;
     const createdEvent = newEvent(newEventId);
 
@@ -77,7 +86,7 @@ describe('Events reducer', () => {
     )).toEqual([newEvent(5001005)]);
   });
 
-  test('Should update event in state', () => {
+  test('Should update primitive event payload (e.g title, diration, price) in state', () => {
     state = [eventData1, eventData2];
 
     const updatedEvent = {
@@ -100,6 +109,25 @@ describe('Events reducer', () => {
 
     const expectedSuccessState = [eventData1, updatedEvent];
     expect(reducer(state, updateSuccess(updatedEvent))).toEqual(expectedSuccessState);
+  });
+
+  test('Should add images to event', () => {
+    state = [eventData1];
+
+    const eventImagesPatch = {
+      ...eventData1,
+      images: [img1.id, museumsNight.id],
+    };
+    const expectedPendingState = [
+      {
+        ...eventImagesPatch,
+        busy: true,
+        pendingUpdate: true,
+      },
+    ];
+
+    expect(reducer(state, updateStart(eventImagesPatch))).toEqual(expectedPendingState);
+    expect(reducer(state, updateSuccess(eventImagesPatch))).toEqual([eventImagesPatch]);
   });
 
   test('Should delete event from state', () => {

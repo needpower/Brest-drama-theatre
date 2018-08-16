@@ -1,7 +1,8 @@
 import httpService from '../../infrastructure/http';
 import mockStore from '../../infrastructure/mockStore';
-import actions from '../actions';
+import actions, { addImages as addImagesType, deleteImages as deleteImagesType } from '../actions';
 import { eventData1, eventData2 } from '../__mocks__/payload';
+import { img1, img2 } from '../../Image/__mocks__/payload';
 
 jest.mock('../../infrastructure/http');
 
@@ -18,6 +19,8 @@ describe('Theatre events actions', () => {
     update,
     updateStart,
     updateSuccess,
+    addImages,
+    deleteImages,
     delete: deleteEvent,
     deleteStart,
     deleteSuccess,
@@ -111,6 +114,21 @@ describe('Theatre events actions', () => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
+
+  test('Images was attached to event', () => {
+    const newImages = [img1.id, img2.id];
+    const expectedAction = {
+      type: addImagesType,
+      record: {
+        eventId: eventData2.id,
+        gallery: newImages,
+      },
+    };
+
+    expect(addImages(eventData2, newImages)).toEqual(expectedAction);
+  });
+
+  test('Images was removed from event', () => {});
 
   test('Event is deleted', () => {
     const expectedActions = [deleteStart(eventData1), deleteSuccess(eventData1)];

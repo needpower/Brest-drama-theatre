@@ -1,5 +1,4 @@
-import { Image } from '../Image/model';
-import { Person } from '../Person/model';
+import { union, difference } from 'lodash';
 
 /**
  * @typedef Language
@@ -16,6 +15,7 @@ import { Person } from '../Person/model';
 
 /**
  * @typedef {Object} Event - New event
+ * @property {number} id
  * @property {?number} event.ageRestrictions - People younger than this age
  * can't buy tickets for this event
  * @property {Person} event.author - An author, director of show
@@ -23,8 +23,8 @@ import { Person } from '../Person/model';
  * @property {string} event.description - About event. Can include html, images
  * @property {!number} event.duration - How long an event will take
  * @property {?string} event.genre
- * @property {Hall} event.hall - In what hall event will occurs
- * @property {Image[]} images - photo gallery of this event in the past. See {@link Image}
+ * @property {Hall} event.hall - In what hall event will be played
+ * @property {number[]} gallery - photo gallery from past event
  * @property {Language} event.language
  * @property {Image} event.poster - A path to cover of event
  * @property {?(number[])} event.price. Several prices while no online ticket sale
@@ -39,5 +39,31 @@ export const MODEL_NAME = 'events';
  * @param {Event} event
  */
 export default function Event(event) {
-  return Object.freeze(event);
+  const getEvent = () => Object.freeze(event);
+
+  /**
+   * @param {number[]} images list of images to attach to event
+   * @returns {Event} updated event
+   */
+  const addImages = (images) => {
+    const updatedImages = union(event.gallery, images);
+    return Object.freeze({
+      ...event,
+      gallery: updatedImages,
+    });
+  };
+
+  /**
+   * @param {number[]} images list of images that have to be deleted
+   * @returns {Event} updated event
+   */
+  const deleteImages = (images) => {
+    const updatedImages = difference(event.gallery, images);
+    return Object.freeze({
+      ...event,
+      gallery: updatedImages,
+    });
+  };
+
+  return Object.freeze({ getEvent, addImages, deleteImages });
 }
