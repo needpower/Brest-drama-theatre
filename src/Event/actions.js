@@ -1,11 +1,7 @@
 import { extend } from 'lodash';
 import reduxCRUD from 'redux-crud';
 import httpService from '../infrastructure/http';
-<<<<<<< HEAD
-import { MODEL_NAME, Event } from './model';
-=======
 import { MODEL_NAME } from './model';
->>>>>>> Events refactoring
 
 const baseActionCreators = reduxCRUD.actionCreatorsFor(MODEL_NAME);
 const {
@@ -77,8 +73,6 @@ const eventsActionCreators = {
   },
 
   /**
-<<<<<<< HEAD
-=======
    * @param {number} eventId
    * @param {number[]} images list of images to attach to event
    */
@@ -103,7 +97,6 @@ const eventsActionCreators = {
   },
 
   /**
->>>>>>> Events refactoring
    * @param {Event} event
    */
   delete(event) {
