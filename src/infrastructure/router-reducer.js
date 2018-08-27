@@ -1,9 +1,8 @@
-import Immutable from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
-const initialState = Immutable.fromJS({
+const initialState = {
   locationBeforeTransitions: null,
-});
+};
 
 const routerReducer = (state = initialState, action) => {
   if (action.type === LOCATION_CHANGE) {
