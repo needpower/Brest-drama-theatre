@@ -14,22 +14,28 @@ import { union, difference } from 'lodash';
  */
 
 /**
+ * @typedef {Object} Character
+ * @property {string} role
+ * @property {number} personId
+ */
+
+/**
  * @typedef {Object} Event - New event
  * @property {number} id
- * @property {?number} event.ageRestrictions - People younger than this age
+ * @property {?number} ageRestrictions - People younger than this age
  * can't buy tickets for this event
- * @property {Person} event.author - An author, director of show
- * @property {Person[]} event.characters - People names who play roles in event
- * @property {string} event.description - About event. Can include html, images
- * @property {!number} event.duration - How long an event will take
- * @property {?string} event.genre
- * @property {Hall} event.hall - In what hall event will be played
+ * @property {number} author - An author, director of event
+ * @property {Character[]} characters - People's names who take part in event
+ * @property {string} description - About event. Can include html, images
+ * @property {!number} duration - How long an event will take
+ * @property {?string} genre
+ * @property {Hall} hall - In what hall event will be played
  * @property {number[]} gallery - photo gallery from past event
- * @property {Language} event.language
- * @property {Image} event.poster - A path to cover of event
- * @property {?(number[])} event.price. Several prices while no online ticket sale
- * @property {Date} event.start - when event will start
- * @property {!string} event.title - Title of event
+ * @property {Language} language
+ * @property {number} poster - A path to cover of event
+ * @property {?(number[])} price. Several prices while no online ticket sale
+ * @property {Date} start - when event will start
+ * @property {!string} title - Title of event
  */
 
 export const MODEL_NAME = 'events';

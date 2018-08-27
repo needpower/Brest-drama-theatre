@@ -1,6 +1,6 @@
 import httpService from '../../infrastructure/http';
 import mockStore from '../../infrastructure/mockStore';
-import actions, { addImages as addImagesType, deleteImages as deleteImagesType } from '../actions';
+import actions, { addImagesType, deleteImagesType } from '../actions';
 import { eventData1, eventData2 } from '../__mocks__/payload';
 import { img1, img2 } from '../../Image/__mocks__/payload';
 
@@ -19,11 +19,11 @@ describe('Theatre events actions', () => {
     update,
     updateStart,
     updateSuccess,
-    addImages,
-    deleteImages,
     delete: deleteEvent,
     deleteStart,
     deleteSuccess,
+    addImages,
+    deleteImages,
   } = actions;
 
   const initializeDB = (mockData) => {
@@ -119,16 +119,23 @@ describe('Theatre events actions', () => {
     const newImages = [img1.id, img2.id];
     const expectedAction = {
       type: addImagesType,
-      record: {
-        eventId: eventData2.id,
-        gallery: newImages,
-      },
+      eventId: eventData2.id,
+      images: newImages,
     };
 
-    expect(addImages(eventData2, newImages)).toEqual(expectedAction);
+    expect(addImages(eventData2.id, newImages)).toEqual(expectedAction);
   });
 
-  test('Images was removed from event', () => {});
+  test('Images was removed from event', () => {
+    const imagesToRemove = [img1.id, img2.id];
+    const expectedAction = {
+      type: deleteImagesType,
+      eventId: eventData1.id,
+      images: imagesToRemove,
+    };
+
+    expect(deleteImages(eventData1.id, imagesToRemove)).toEqual(expectedAction);
+  });
 
   test('Event is deleted', () => {
     const expectedActions = [deleteStart(eventData1), deleteSuccess(eventData1)];

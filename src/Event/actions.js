@@ -22,8 +22,10 @@ const {
   deleteSuccess,
   deleteError,
 } = baseActionCreators;
-export const addImages = 'EVENTS_ADD_IMAGES';
-export const deleteImages = 'EVENTS_DELETE_IMAGES';
+export const addImagesType = 'EVENTS_ADD_IMAGES';
+export const deleteImagesType = 'EVENTS_DELETE_IMAGES';
+export const addPersonType = 'EVENTS_ADD_PERSON';
+export const deletePersonType = 'EVENTS_DELETE_PERSON';
 
 const eventsActionCreators = {
   /**
@@ -78,7 +80,7 @@ const eventsActionCreators = {
    */
   addImages(eventId, images) {
     return {
-      type: addImages,
+      type: addImagesType,
       eventId,
       images,
     };
@@ -90,9 +92,33 @@ const eventsActionCreators = {
    */
   deleteImages(eventId, images) {
     return {
-      type: deleteImages,
+      type: deleteImagesType,
       eventId,
       images,
+    };
+  },
+
+  /**
+   * @param {number} eventId
+   * @param {number} person id of a person
+   */
+  addPerson(eventId, person) {
+    return {
+      type: addPersonType,
+      eventId,
+      person,
+    };
+  },
+
+  /**
+   * @param {number} eventId
+   * @param {number} person id of a person
+   */
+  deletePerson(eventId, person) {
+    return {
+      type: deletePersonType,
+      eventId,
+      person,
     };
   },
 
