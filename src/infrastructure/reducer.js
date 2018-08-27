@@ -1,19 +1,19 @@
 import { combineReducers } from 'redux';
-import routerReducer from './router-reducer';
 import events from '../Event/reducer';
 
 /**
- * @param {Array} array state
+ * @param {Array} destination state
  * @param {number} itemId item to update
- * @param {Object} newValues a way to update item
+ * @param {Object} newValue a data which item will be updated
+ * @returns {Array} updated state
  */
-export const updateItemInArray = (array, itemId, newValues) => {
-  const updatedItems = array.map((item) => {
+export const updateItemInArray = ({ destination, itemId, newValue }) => {
+  const updatedItems = destination.map((item) => {
     if (item.id !== itemId) {
       // Since we only want to update one item, preserve all others that not match
       return item;
     }
-    const updatedItem = Object.assign({}, item, newValues);
+    const updatedItem = Object.assign({}, item, newValue);
     return updatedItem;
   });
 
@@ -22,5 +22,4 @@ export const updateItemInArray = (array, itemId, newValues) => {
 
 export default combineReducers({
   events,
-  routing: routerReducer,
 });

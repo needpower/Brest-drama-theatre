@@ -2,7 +2,7 @@ import httpService from '../../infrastructure/http';
 import actions from '../actions';
 import reducer from '../reducer';
 import { eventData1, eventData2 } from '../__mocks__/payload';
-import { img1, museumsNight } from '../../Image/__mocks__/payload';
+import { img1, museumsNight, gogolPoster } from '../../Image/__mocks__/payload';
 
 jest.mock('../../infrastructure/http');
 
@@ -15,6 +15,8 @@ const {
   updateSuccess,
   deleteStart,
   deleteSuccess,
+  addImages,
+  deleteImages,
 } = actions;
 
 describe('Events reducer', () => {
@@ -37,6 +39,7 @@ describe('Events reducer', () => {
     duration: 85,
     genre: '',
     hall: 'big',
+    gallery: [],
     language: 'ru',
     poster: null,
     price: [15, 30, 45],
@@ -111,23 +114,30 @@ describe('Events reducer', () => {
     expect(reducer(state, updateSuccess(updatedEvent))).toEqual(expectedSuccessState);
   });
 
-  test('Should add images to event', () => {
+  test("Should add images to event's gallery", () => {
     state = [eventData1];
-
-    const eventImagesPatch = {
-      ...eventData1,
-      images: [img1.id, museumsNight.id],
-    };
-    const expectedPendingState = [
+    const imagesToAdd = [img1.id, museumsNight.id];
+    const expectedState = [
       {
-        ...eventImagesPatch,
-        busy: true,
-        pendingUpdate: true,
+        ...eventData1,
+        gallery: [...eventData1.gallery, ...imagesToAdd],
       },
     ];
 
-    expect(reducer(state, updateStart(eventImagesPatch))).toEqual(expectedPendingState);
-    expect(reducer(state, updateSuccess(eventImagesPatch))).toEqual([eventImagesPatch]);
+    expect(reducer(state, addImages(eventData1.id, imagesToAdd))).toEqual(expectedState);
+  });
+
+  test("Should remove images from event's gallery", () => {
+    state = [eventData2];
+    const imagesToRemove = [museumsNight.id];
+    const expectedState = [
+      {
+        ...eventData2,
+        gallery: [gogolPoster.id],
+      },
+    ];
+
+    expect(reducer(state, deleteImages(eventData2.id, imagesToRemove))).toEqual(expectedState);
   });
 
   test('Should delete event from state', () => {

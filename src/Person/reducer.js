@@ -10,16 +10,24 @@ export default function reducer(state = [], action) {
   switch (action.type) {
     case ADD_PHOTOS: {
       const person = Person(find(state, { id: action.personId }));
-      // @TODO add error protection: if such preson not found
+      // TODO: add error protection: if such preson not found
       const personWithAddedPhotos = person.addPhotos(action.photos);
-      return updateItemInArray(state, action.personId, personWithAddedPhotos);
+      return updateItemInArray({
+        destination: state,
+        itemId: action.personId,
+        newValue: personWithAddedPhotos,
+      });
     }
 
     case REMOVE_PHOTOS: {
       const person = Person(find(state, { id: action.personId }));
-      // @TODO add error protection: if such preson not found
+      // TODO: add error protection: if such preson not found
       const personWithRemovedPhotos = person.removePhotos(action.photos);
-      return updateItemInArray(state, action.personId, personWithRemovedPhotos);
+      return updateItemInArray({
+        destination: state,
+        itemId: action.personId,
+        newValue: personWithRemovedPhotos,
+      });
     }
 
     default:
