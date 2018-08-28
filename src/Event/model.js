@@ -1,4 +1,4 @@
-import { union, difference } from 'lodash';
+import { union, unionWith, difference, differenceWith, isEqual } from 'lodash';
 
 /**
  * @typedef Language
@@ -71,5 +71,37 @@ export default function Event(event) {
     });
   };
 
-  return Object.freeze({ getEvent, addImages, deleteImages });
+  /**
+   *
+   * @param {Character} character
+   * @returns {Event} event with updated characters
+   */
+  const addCharacter = (character) => {
+    const updatedCharacters = unionWith(event.character, character, isEqual);
+    return Object.freeze({
+      ...event,
+      characters: updatedCharacters,
+    });
+  };
+
+  /**
+   *
+   * @param {Character} character character to remove from event
+   * @returns {Event} event with updated characters
+   */
+  const removeCharacter = (character) => {
+    const updatedCharacters = differenceWith(event.character, character, isEqual);
+    return Object.freeze({
+      ...event,
+      characters: updatedCharacters,
+    });
+  };
+
+  return Object.freeze({
+    getEvent,
+    addImages,
+    deleteImages,
+    addCharacter,
+    removeCharacter,
+  });
 }
