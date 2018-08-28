@@ -1,7 +1,13 @@
 import httpService from '../../infrastructure/http';
 import mockStore from '../../infrastructure/mockStore';
-import actions, { addImagesType, deleteImagesType } from '../actions';
+import actions, {
+  addImagesType,
+  deleteImagesType,
+  addCharacterType,
+  removeCharacterType,
+} from '../actions';
 import { eventData1, eventData2 } from '../__mocks__/payload';
+import { alena, anton } from '../../Person/__mocks__/payload';
 import { img1, img2 } from '../../Image/__mocks__/payload';
 
 jest.mock('../../infrastructure/http');
@@ -24,6 +30,8 @@ describe('Theatre events actions', () => {
     deleteSuccess,
     addImages,
     deleteImages,
+    addCharacter,
+    removeCharacter,
   } = actions;
 
   const initializeDB = (mockData) => {
@@ -135,6 +143,34 @@ describe('Theatre events actions', () => {
     };
 
     expect(deleteImages(eventData1.id, imagesToRemove)).toEqual(expectedAction);
+  });
+
+  test('Character is added to event', () => {
+    const characterToAdd = {
+      role: 'Writer',
+      personId: alena.id,
+    };
+    const expectedAction = {
+      type: addCharacterType,
+      eventId: eventData1.id,
+      character: characterToAdd,
+    };
+
+    expect(addCharacter(eventData1.id, characterToAdd)).toEqual(expectedAction);
+  });
+
+  test('Character is removed from event', () => {
+    const characterToRemove = {
+      role: 'Ярослав Мудрый',
+      personId: anton.id,
+    };
+    const expectedAction = {
+      type: removeCharacterType,
+      eventId: eventData1.id,
+      character: characterToRemove,
+    };
+
+    expect(removeCharacter(eventData1.id, characterToRemove)).toEqual(expectedAction);
   });
 
   test('Event is deleted', () => {

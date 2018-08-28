@@ -1,7 +1,7 @@
 import { extend } from 'lodash';
 import reduxCRUD from 'redux-crud';
 import httpService from '../infrastructure/http';
-import { MODEL_NAME } from './model';
+import { MODEL_NAME, Character } from './model';
 
 const baseActionCreators = reduxCRUD.actionCreatorsFor(MODEL_NAME);
 const {
@@ -22,10 +22,10 @@ const {
   deleteSuccess,
   deleteError,
 } = baseActionCreators;
-export const addImagesType = 'EVENTS_ADD_IMAGES';
-export const deleteImagesType = 'EVENTS_DELETE_IMAGES';
-export const addPersonType = 'EVENTS_ADD_PERSON';
-export const deletePersonType = 'EVENTS_DELETE_PERSON';
+export const addImagesType = `${MODEL_NAME}_ADD_IMAGES`;
+export const deleteImagesType = `${MODEL_NAME}_DELETE_IMAGES`;
+export const addCharacterType = `${MODEL_NAME}_ADD_CHARACTER`;
+export const removeCharacterType = `${MODEL_NAME}_REMOVE_CHARACTER`;
 
 const eventsActionCreators = {
   /**
@@ -100,25 +100,25 @@ const eventsActionCreators = {
 
   /**
    * @param {number} eventId
-   * @param {number} person id of a person
+   * @param {Character} character id of a character
    */
-  addPerson(eventId, person) {
+  addCharacter(eventId, character) {
     return {
-      type: addPersonType,
+      type: addCharacterType,
       eventId,
-      person,
+      character,
     };
   },
 
   /**
    * @param {number} eventId
-   * @param {number} person id of a person
+   * @param {Character} character id of a character
    */
-  deletePerson(eventId, person) {
+  removeCharacter(eventId, character) {
     return {
-      type: deletePersonType,
+      type: removeCharacterType,
       eventId,
-      person,
+      character,
     };
   },
 
