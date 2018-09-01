@@ -77,7 +77,7 @@ export default function Event(event) {
    * @returns {Event} event with updated characters
    */
   const addCharacter = (character) => {
-    const updatedCharacters = unionWith(event.character, character, isEqual);
+    const updatedCharacters = unionWith(event.characters, [character], isEqual);
     return Object.freeze({
       ...event,
       characters: updatedCharacters,
@@ -90,7 +90,7 @@ export default function Event(event) {
    * @returns {Event} event with updated characters
    */
   const removeCharacter = (character) => {
-    const updatedCharacters = differenceWith(event.character, character, isEqual);
+    const updatedCharacters = differenceWith(event.characters, [character], isEqual);
     return Object.freeze({
       ...event,
       characters: updatedCharacters,

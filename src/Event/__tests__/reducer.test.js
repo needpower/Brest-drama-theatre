@@ -2,6 +2,7 @@ import httpService from '../../infrastructure/http';
 import actions from '../actions';
 import reducer from '../reducer';
 import { eventData1, eventData2 } from '../__mocks__/payload';
+import { alena, viktor } from '../../Person/__mocks__/payload';
 import { img1, museumsNight, gogolPoster } from '../../Image/__mocks__/payload';
 
 jest.mock('../../infrastructure/http');
@@ -17,13 +18,25 @@ const {
   deleteSuccess,
   addImages,
   deleteImages,
+  addCharacter,
+  removeCharacter,
 } = actions;
 
 describe('Events reducer', () => {
   let state;
 
+  /**
+   * @param {Array} mockData
+   */
   const initializeDB = (mockData) => {
     httpService.setMockDB(mockData);
+  };
+
+  /**
+   * @param {Array} mockEvents
+   */
+  const initState = (mockEvents) => {
+    state = mockEvents;
   };
 
   const resetState = () => {
@@ -89,8 +102,8 @@ describe('Events reducer', () => {
     )).toEqual([newEvent(5001005)]);
   });
 
-  test('Should update primitive event payload (e.g title, diration, price) in state', () => {
-    state = [eventData1, eventData2];
+  test('Should update primitive event payload (e.g title, diration, price)', () => {
+    initState([eventData1, eventData2]);
 
     const updatedEvent = {
       ...eventData2,
@@ -107,7 +120,6 @@ describe('Events reducer', () => {
         pendingUpdate: true,
       },
     ];
-
     expect(reducer(state, updateStart(updatedEvent))).toEqual(expectedPendingState);
 
     const expectedSuccessState = [eventData1, updatedEvent];
@@ -115,7 +127,7 @@ describe('Events reducer', () => {
   });
 
   test("Should add images to event's gallery", () => {
-    state = [eventData1];
+    initState([eventData1]);
     const imagesToAdd = [img1.id, museumsNight.id];
     const expectedState = [
       {
@@ -128,7 +140,7 @@ describe('Events reducer', () => {
   });
 
   test("Should remove images from event's gallery", () => {
-    state = [eventData2];
+    initState([eventData2]);
     const imagesToRemove = [museumsNight.id];
     const expectedState = [
       {
@@ -140,8 +152,48 @@ describe('Events reducer', () => {
     expect(reducer(state, deleteImages(eventData2.id, imagesToRemove))).toEqual(expectedState);
   });
 
+  test('Should add characters to event', () => {
+    initState([eventData2]);
+    const Yunona = {
+      role: 'Юнона',
+      personId: alena.id,
+    };
+
+    // Add first character
+    const expectedStateWithYunona = [
+      {
+        ...eventData2,
+        characters: [...eventData2.characters, Yunona],
+      },
+    ];
+    expect(reducer(state, addCharacter(eventData2.id, Yunona))).toEqual(expectedStateWithYunona);
+  });
+
+  test('Should remove character from event in state', () => {
+    initState([eventData1, eventData2]);
+    let characterToRemove = {
+      role: 'Такой роли нет',
+      personId: viktor.id,
+    };
+    // Do nothing if character not found
+    expect(reducer(state, removeCharacter(eventData1.id, characterToRemove))).toEqual(state);
+
+    characterToRemove = {
+      role: 'Художник-постановщик',
+      personId: alena.id,
+    };
+    const expectedState = [
+      {
+        ...eventData1,
+        characters: eventData1.characters.filter(character => character.role !== 'Художник-постановщик'),
+      },
+      eventData2,
+    ];
+    expect(reducer(state, removeCharacter(eventData1.id, characterToRemove))).toEqual(expectedState);
+  });
+
   test('Should delete event from state', () => {
-    state = [eventData1, eventData2];
+    initState([eventData1, eventData2]);
 
     const expectedPendingState = [
       {
