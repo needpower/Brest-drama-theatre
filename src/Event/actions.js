@@ -1,6 +1,6 @@
 import { extend } from 'lodash';
 import reduxCRUD from 'redux-crud';
-import httpService from '../infrastructure/http';
+import httpService from 'infrastructure/http';
 import { MODEL_NAME, Character } from './model';
 
 const baseActionCreators = reduxCRUD.actionCreatorsFor(MODEL_NAME);

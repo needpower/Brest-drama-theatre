@@ -1,11 +1,11 @@
-import httpService from '../../infrastructure/http';
+import httpService from 'infrastructure/http';
+import { gogolPoster, img1, museumsNight } from 'Image/__mocks__/payload';
+import { alena, viktor } from 'Person/__mocks__/payload';
 import actions from '../actions';
 import reducer from '../reducer';
 import { eventData1, eventData2 } from '../__mocks__/payload';
-import { alena, viktor } from '../../Person/__mocks__/payload';
-import { img1, museumsNight, gogolPoster } from '../../Image/__mocks__/payload';
 
-jest.mock('../../infrastructure/http');
+jest.mock('infrastructure/http');
 
 const {
   fetchSuccess,

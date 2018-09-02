@@ -1,6 +1,6 @@
 import reduxCRUD from 'redux-crud';
 import { find } from 'lodash';
-import { updateItemInArray } from '../infrastructure/reducer';
+import { updateItemInArray } from 'infrastructure/reducer';
 import Person, { MODEL_NAME } from './model';
 import { ADD_PHOTOS, REMOVE_PHOTOS } from './actions';
 

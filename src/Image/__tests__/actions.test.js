@@ -1,9 +1,9 @@
-import httpService from '../../infrastructure/http';
-import mockStore from '../../infrastructure/mockStore';
+import httpService from 'infrastructure/http';
+import mockStore from 'infrastructure/mockStore';
 import actions from '../actions';
 import { img1, gogolPoster, museumsNight } from '../__mocks__/payload';
 
-jest.mock('../../infrastructure/http');
+jest.mock('infrastructure/http');
 
 describe('Image actions', () => {
   let store;
