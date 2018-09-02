@@ -1,21 +1,14 @@
-import { Record, List, fromJS } from 'immutable';
-import Image from './model';
+/**
+ * @typedef {Object} PhotoAlbum
+ * @property {Image[]} imagesList
+ * @property {Date} created a date of album's creation
+ * @property {string} description about album, e.g. what event it is related to
+ */
 
-const Parent = Record({
-  photos: List(),
-});
-
-/** Class representing a group of photos */
-export default class PhotoAlbum extends Parent {
-  /**
-   * Create a photo album
-   *
-   * @param {(Object[]|Image[])} photo
-   */
-  constructor(photos) {
-    const validatedPhotos = photos || [];
-    const imageList = validatedPhotos.map(photo => (photo instanceof Image ? photo : new Image(photo)),);
-
-    super(fromJS({ photos: imageList }));
-  }
+/**
+ * Class representing photos that grouped by name, description
+ * @param {PhotoAlbum} imagesList
+ */
+export default function PhotoAlbum(photoAlbum) {
+  return Object.freeze(photoAlbum);
 }
