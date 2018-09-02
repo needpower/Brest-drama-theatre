@@ -22,9 +22,9 @@ const {
   deleteSuccess,
   deleteError,
 } = baseActionCreators;
-
-export const ADD_PHOTOS = 'ADD_PHOTOS';
-export const REMOVE_PHOTOS = 'REMOVE_PHOTOS';
+const ACITION_MODEL = MODEL_NAME.toUpperCase();
+export const ADD_PHOTOS = `${ACITION_MODEL}_ADD_PHOTOS`;
+export const REMOVE_PHOTOS = `${ACITION_MODEL}_REMOVE_PHOTOS`;
 
 const personsActionCreators = {
   /**

@@ -22,10 +22,11 @@ const {
   deleteSuccess,
   deleteError,
 } = baseActionCreators;
-export const addImagesType = `${MODEL_NAME}_ADD_IMAGES`;
-export const deleteImagesType = `${MODEL_NAME}_DELETE_IMAGES`;
-export const addCharacterType = `${MODEL_NAME}_ADD_CHARACTER`;
-export const removeCharacterType = `${MODEL_NAME}_REMOVE_CHARACTER`;
+const ACTION_MODEL = MODEL_NAME.toUpperCase();
+export const addImagesType = `${ACTION_MODEL}_ADD_IMAGES`;
+export const deleteImagesType = `${ACTION_MODEL}_DELETE_IMAGES`;
+export const addCharacterType = `${ACTION_MODEL}_ADD_CHARACTER`;
+export const removeCharacterType = `${ACTION_MODEL}_REMOVE_CHARACTER`;
 
 const eventsActionCreators = {
   /**

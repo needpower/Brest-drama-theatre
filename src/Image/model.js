@@ -14,5 +14,6 @@ export const MODEL_NAME = 'images';
  * @param {Image} image
  */
 export default function Image(image) {
+  // TODO: replace with real model (getters, setters, etc.)
   return Object.freeze(image);
 }
