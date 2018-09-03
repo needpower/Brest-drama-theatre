@@ -1,11 +1,8 @@
-import httpService from 'infrastructure/http';
 import { gogolPoster, img1, museumsNight } from 'Image/__mocks__/payload';
 import { alena, viktor } from 'Person/__mocks__/payload';
 import actions from '../actions';
 import reducer from '../reducer';
 import { eventData1, eventData2 } from '../__mocks__/payload';
-
-jest.mock('infrastructure/http');
 
 const {
   fetchSuccess,
@@ -24,13 +21,6 @@ const {
 
 describe('Events reducer', () => {
   let state;
-
-  /**
-   * @param {Array} mockData
-   */
-  const initializeDB = (mockData) => {
-    httpService.setMockDB(mockData);
-  };
 
   /**
    * @param {Array} mockEvents
@@ -61,7 +51,6 @@ describe('Events reducer', () => {
   });
 
   beforeEach(() => {
-    initializeDB([eventData1, eventData2]);
     resetState();
   });
 
