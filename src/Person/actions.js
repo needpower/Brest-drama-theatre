@@ -23,8 +23,8 @@ const {
   deleteError,
 } = baseActionCreators;
 const ACITION_MODEL = MODEL_NAME.toUpperCase();
-export const ADD_PHOTOS = `${ACITION_MODEL}_ADD_PHOTOS`;
-export const REMOVE_PHOTOS = `${ACITION_MODEL}_REMOVE_PHOTOS`;
+export const addPhotosType = `${ACITION_MODEL}_ADD_PHOTOS`;
+export const removePhotosType = `${ACITION_MODEL}_REMOVE_PHOTOS`;
 
 const personsActionCreators = {
   /**
@@ -62,7 +62,7 @@ const personsActionCreators = {
 
   addPhotos(personId, photos) {
     return {
-      type: ADD_PHOTOS,
+      type: addPhotosType,
       personId,
       photos,
     };
@@ -70,7 +70,7 @@ const personsActionCreators = {
 
   removePhotos(personId, photos) {
     return {
-      type: REMOVE_PHOTOS,
+      type: removePhotosType,
       personId,
       photos,
     };
