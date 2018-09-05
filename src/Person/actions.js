@@ -60,6 +60,10 @@ const personsActionCreators = {
     };
   },
 
+  /**
+   * @param {number} personId
+   * @param {number[]} photos
+   */
   addPhotos(personId, photos) {
     return {
       type: addPhotosType,
@@ -68,6 +72,10 @@ const personsActionCreators = {
     };
   },
 
+  /**
+   * @param {number} personId
+   * @param {number[]} photos
+   */
   removePhotos(personId, photos) {
     return {
       type: removePhotosType,

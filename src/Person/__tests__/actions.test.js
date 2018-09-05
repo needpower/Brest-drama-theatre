@@ -119,4 +119,35 @@ describe('Person actions', () => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
+
+  test('Person is deleted', () => {
+    const expectedActions = [deleteStart(alena), deleteSuccess(alena)];
+
+    expect.assertions(1);
+    return store.dispatch(deleteEvent(alena)).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+
+  test("Photos are added to person's profile", () => {
+    const photosToAdd = [945101, 893366];
+    const expectedAction = {
+      type: addPhotosType,
+      personId: viktor.id,
+      photos: photosToAdd,
+    };
+
+    expect(addPhotos(viktor.id, photosToAdd)).toEqual(expectedAction);
+  });
+
+  test("Photos are removed from person's profile", () => {
+    const photosToRemove = [945101, 893366];
+    const expectedAction = {
+      type: removePhotosType,
+      personId: anton.id,
+      photos: photosToRemove,
+    };
+
+    expect(removePhotos(anton.id, photosToRemove)).toEqual(expectedAction);
+  });
 });
