@@ -148,7 +148,6 @@ describe('Events reducer', () => {
       personId: alena.id,
     };
 
-    // Add first character
     const expectedStateWithYunona = [
       {
         ...eventData2,
