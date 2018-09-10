@@ -1,19 +1,19 @@
 import { union, difference } from 'lodash';
 
 /**
- * @typedef {Object} Person
+ * @typedef {Object} Character
  * @property {?string} about Biography, few words about person
  * @property {!string} name
  * @property {number[]} photos A to person's photos ids
  */
 
-export const MODEL_NAME = 'persons';
+export const MODEL_NAME = 'characters';
 
 /** Class representing a theatre worker
  *
  * @param {Person} person
  */
-export default function Person(person) {
+export default function Character(person) {
   const getPerson = () => Object.freeze(person);
 
   /**

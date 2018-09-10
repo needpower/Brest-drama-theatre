@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import events from 'Event/reducer';
+import events from 'Events/reducer';
 
 /**
  * @param {Array} source state

@@ -1,5 +1,5 @@
-import { gogolPoster, museumsNight } from 'Image/__mocks__/payload';
-import { anton, alena, viktor } from 'Person/__mocks__/payload';
+import { gogolPoster, museumsNight } from 'Images/__mocks__/payload';
+import { anton, alena, viktor } from 'Characters/__mocks__/payload';
 
 export const eventData1 = {
   id: 100001,

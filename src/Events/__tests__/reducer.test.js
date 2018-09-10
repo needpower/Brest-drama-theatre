@@ -1,5 +1,5 @@
-import { gogolPoster, img1, museumsNight } from 'Image/__mocks__/payload';
-import { alena, viktor } from 'Person/__mocks__/payload';
+import { gogolPoster, img1, museumsNight } from 'Images/__mocks__/payload';
+import { alena, viktor } from 'Characters/__mocks__/payload';
 import actions from '../actions';
 import reducer from '../reducer';
 import { eventData1, eventData2 } from '../__mocks__/payload';

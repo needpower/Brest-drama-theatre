@@ -1,7 +1,7 @@
-import { img1, img2 } from 'Image/__mocks__/payload';
+import { img1, img2 } from 'Images/__mocks__/payload';
 import httpService from 'infrastructure/http';
 import mockStore from 'infrastructure/mockStore';
-import { alena, anton } from 'Person/__mocks__/payload';
+import { alena, anton } from 'Characters/__mocks__/payload';
 import actions, {
   addCharacterType,
   addImagesType,

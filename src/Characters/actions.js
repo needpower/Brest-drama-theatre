@@ -1,7 +1,7 @@
 import { extend } from 'lodash';
 import reduxCRUD from 'redux-crud';
 import httpService from 'infrastructure/http';
-import { MODEL_NAME, Person } from './model';
+import { MODEL_NAME, Character } from './model';
 
 const baseActionCreators = reduxCRUD.actionCreatorsFor(MODEL_NAME);
 const {
@@ -43,7 +43,7 @@ const personsActionCreators = {
   },
 
   /**
-   * @param {Person} person
+   * @param {Character} person
    */
   add(person) {
     return (dispatch) => {
@@ -98,7 +98,7 @@ const personsActionCreators = {
   },
 
   /**
-   * @param {Person} person
+   * @param {Character} person
    */
   delete(person) {
     return (dispatch) => {
