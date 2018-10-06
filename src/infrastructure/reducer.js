@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import events from 'Events/reducer';
 import characters from 'Characters/reducer';
 import images from 'Images/reducer';
+import ui from 'ui/reducer';
 
 /**
  * @param {Array} source state
@@ -23,7 +24,10 @@ export const updateItemInArray = ({ source, itemId, newValue }) => {
 };
 
 export default combineReducers({
-  events,
-  characters,
-  images,
+  domain: combineReducers({
+    events,
+    characters,
+    images,
+  }),
+  ui,
 });
