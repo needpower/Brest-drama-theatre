@@ -1,8 +1,9 @@
-import { combineReducers } from 'redux';
-import events from 'Events/reducer';
 import characters from 'Characters/reducer';
+import events from 'Events/reducer';
 import images from 'Images/reducer';
+import { combineReducers } from 'redux';
 import ui from 'ui/reducer';
+import router from './router';
 
 /**
  * @param {Array} source state
@@ -30,4 +31,5 @@ export default combineReducers({
     images,
   }),
   ui,
+  location: router.reducer,
 });
