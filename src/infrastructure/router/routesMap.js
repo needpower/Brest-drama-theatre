@@ -29,6 +29,12 @@ const routesMap = {
       return dispatch(eventsActions.get([id]));
     },
   },
+  CHARACTERS: {
+    path: '/characters',
+  },
+  CONTACTS: {
+    path: '/contacts',
+  },
 };
 
 export default routesMap;
