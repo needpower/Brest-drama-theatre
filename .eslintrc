@@ -1,5 +1,6 @@
 {
-  "extends": ["airbnb-base", "plugin:jest/recommended"],
+  "extends": ["airbnb", "plugin:jest/recommended"],
+  "plugins": ["react"],
   "settings": {
     "import/resolver": {
       "babel-module": {}
