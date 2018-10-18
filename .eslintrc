@@ -3,7 +3,18 @@
   "plugins": ["react"],
   "settings": {
     "import/resolver": {
-      "babel-module": {}
+      "babel-module": {},
+      "node": {
+        "paths": ["src"]
+      }
     }
+  },
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ]
   }
 }
