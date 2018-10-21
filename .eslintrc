@@ -1,6 +1,6 @@
 {
+  "parser": "babel-eslint",
   "extends": ["airbnb", "plugin:jest/recommended"],
-  "plugins": ["react"],
   "settings": {
     "import/resolver": {
       "babel-module": {},
@@ -15,6 +15,7 @@
       {
         "extensions": [".js", ".jsx"]
       }
-    ]
+    ],
+    "react/destructuring-assignment": [0, "always"]
   }
 }
