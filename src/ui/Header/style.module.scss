@@ -1,0 +1,66 @@
+.header {
+  align-items: center;
+  border-bottom: 1px;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+}
+
+.menuBurger {
+  display: inline-block;
+  height: 3px;
+  position: relative;
+  width: 30px;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  background-color: #000;
+  &:before {
+    background-color: #000;
+    content: '';
+    height: 3px;
+    position: absolute;
+    top: -8px;
+    width: 30px;
+  }
+  &:after {
+    background-color: #000;
+    content: '';
+    height: 3px;
+    position: absolute;
+    top: 8px;
+    width: 30px;
+  }
+  &.opened {
+    background-color: transparent;
+    height: 17px;
+    width: 30px;
+    &:before {
+      top: -9px;
+      transform: translateY(9px) rotate(45deg);
+    }
+    &:after {
+      top: 9px;
+      transform: translateY(-9px) rotate(-45deg);
+    }
+  }
+}
+
+.menuTrigger {
+  &.open {
+    z-index: 4;
+  }
+  .menuLabel {
+    padding-left: 10px;
+  }
+  &:hover {
+    cursor: pointer;
+    .menuLabel {
+      color: #6f6f6f;
+    }
+    .menuBurger span {
+      background-color: #6f6f6f;
+    }
+    .menuBurger span:nth-child(3) {
+      width: 100%;
+    }
+  }
+}
