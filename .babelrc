@@ -6,6 +6,7 @@
         "root": ["./src", "./"],
         "extensions": [".js", ".jsx", ".es", ".es6", ".ts", ".tsx"]
       }
-    ]
+    ],
+    "universal-import"
   ]
 }

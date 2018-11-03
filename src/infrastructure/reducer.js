@@ -31,5 +31,5 @@ export default combineReducers({
     images,
   }),
   ui,
-  location: router.reducer,
+  location: router().reducer,
 });

@@ -4,21 +4,29 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import errorHandler from './error-handler';
 import reducer from './reducer';
-import router from './router';
+import createRouter from './router';
 
-const getMiddelware = () => {
-  const { middleware: routerMiddleware } = router;
-  if (process.env.NODE_ENV === 'production') {
-    return applyMiddleware(errorHandler, routerMiddleware, thunk);
-  }
-  // logger for development
-  return applyMiddleware(errorHandler, routerMiddleware, thunk, logger);
-};
+export default function configureStore({ history, initialEntries, preloadedState = {} }) {
+  const { enhancer, middleware: routerMiddleware, thunk: routerThunk } = createRouter({
+    history,
+    initialEntries,
+  });
+  const getMiddelware = () => {
+    if (process.env.NODE_ENV === 'production') {
+      return applyMiddleware(errorHandler, thunk, routerMiddleware);
+    }
+    // logger for development
+    return applyMiddleware(errorHandler, thunk, routerMiddleware, logger);
+  };
 
-export default createStore(
-  reducer,
-  compose(
-    router.enhancer,
-    composeWithDevTools(getMiddelware()),
-  ),
-);
+  const store = createStore(
+    reducer,
+    preloadedState,
+    compose(
+      enhancer,
+      composeWithDevTools(getMiddelware()),
+    ),
+  );
+
+  return { store, routerThunk };
+}
