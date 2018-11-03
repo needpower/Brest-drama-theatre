@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'mineral-ui/themes';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 import Header from 'ui/Header';
+import Switcher from './Switcher';
 
 export default function App() {
   return (
@@ -10,7 +11,9 @@ export default function App() {
         <FlexItem>
           <Header />
         </FlexItem>
-        <FlexItem>Events list</FlexItem>
+        <FlexItem>
+          <Switcher />
+        </FlexItem>
       </Flex>
     </ThemeProvider>
   );

@@ -36,10 +36,10 @@ const eventsActionCreators = {
     return (dispatch) => {
       dispatch(fetchStart());
 
-      return getItems('getEvents', {
+      return getItems('events', {
         params: { ids },
       })
-        .then(events => dispatch(fetchSuccess(events, { replace: replaceExisting })))
+        .then(events => dispatch(fetchSuccess(events.data, { replace: replaceExisting })))
         .catch(error => dispatch(fetchError(error)));
     };
   },
