@@ -1,4 +1,3 @@
-import { FlexItem } from 'mineral-ui/Flex';
 import React, { PureComponent } from 'react';
 import classes from 'classnames';
 import logo from './logo.png';
@@ -26,9 +25,7 @@ export default class Header extends PureComponent {
     });
     return (
       <header className={st.header}>
-        <FlexItem flex alignItems="center" className={menuTrigger} onClick={this.toggleMenu}>
-          <Burger menuOpened={menuOpened} />
-        </FlexItem>
+        <Burger menuOpened={menuOpened} onClick={this.toggleMenu} />
         <img src={logo} alt="logo" />
         <Menu opened={menuOpened} />
       </header>

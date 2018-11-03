@@ -6,12 +6,11 @@
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "cuid": "^2.1.4",
-    "emotion": "^9.2.12",
-    "emotion-theming": "^9.2.9",
     "express": "^4.16.4",
+    "grommet": "^2.0.0-rc",
+    "grommet-icons": "^3.2.0",
     "history": "^4.7.2",
     "lodash": "^4.17.10",
-    "mineral-ui": "^0.47.0",
     "node-sass": "^4.9.4",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
@@ -31,6 +30,7 @@
     "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1",
+    "styled-components": "^4.0.3",
     "webpack-flush-chunks": "^2.0.3"
   },
   "devDependencies": {

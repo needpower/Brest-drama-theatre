@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import Flex from 'mineral-ui/Flex';
 import Navigation from '../Navigation';
 
 export default class Menu extends Component {
@@ -27,11 +26,6 @@ export default class Menu extends Component {
 
   render() {
     const { opened } = this.props;
-    const nav = (
-      <Flex>
-        <Navigation opened={opened} />
-      </Flex>
-    );
-    return ReactDOM.createPortal(nav, this.el);
+    return ReactDOM.createPortal(<Navigation opened={opened} />, this.el);
   }
 }

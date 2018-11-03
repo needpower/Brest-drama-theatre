@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'mineral-ui/Link';
 import { NavLink } from 'redux-first-router-link';
 import classes from 'classnames';
 import navigationConfig from './config';
@@ -16,9 +15,7 @@ export default function Navigation({ opened }) {
         <ul>
           {navigationConfig.map(link => (
             <li key={link.path.type}>
-              <Link element={NavLink} to={link.path}>
-                {link.name}
-              </Link>
+              <NavLink to={link.path}>{link.name}</NavLink>
             </li>
           ))}
         </ul>
