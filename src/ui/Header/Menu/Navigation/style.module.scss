@@ -1,17 +1,12 @@
 .overlay {
-  background-color: #888080;
-  height: 100%;
   left: 0;
-  min-height: 100vh;
   overflow: auto;
-  padding: 142px 0 50px;
   position: fixed;
   top: 0;
   transition: all 0.5s 0s cubic-bezier(1, 0, 0, 1);
   transform: translate3d(0, -100%, 0);
   opacity: 1;
   visibility: hidden;
-  width: 100%;
   &.opened {
     transition: all 0.5s 0s cubic-bezier(1, 0, 0, 1);
     transform: scale(1) translate3d(0, 0, 0);
@@ -21,7 +16,6 @@
 }
 
 .nav {
-  text-align: left;
   font-size: 62px;
   ul {
     list-style: none;
@@ -30,6 +24,9 @@
     li {
       color: #000;
       line-height: 82px;
+
+      a {
+      }
     }
   }
 }

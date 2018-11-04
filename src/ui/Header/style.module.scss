@@ -1,18 +1,14 @@
-.header {
-  align-items: center;
-  border-bottom: 1px;
-  display: flex;
-  height: 60px;
-  justify-content: space-between;
-}
-
 .menuBurger {
   display: inline-block;
   height: 3px;
   position: relative;
   width: 30px;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   background-color: #000;
+  &,
+  &:before,
+  &:after {
+    transition: all 0.3s 0s cubic-bezier(0.19, 1, 0.22, 1);
+  }
   &:before {
     background-color: #000;
     content: '';
@@ -27,12 +23,15 @@
     height: 3px;
     position: absolute;
     top: 8px;
-    width: 30px;
+    width: 50%;
   }
   &.opened {
     background-color: transparent;
     height: 17px;
     width: 30px;
+    &:hover {
+      background-color: transparent;
+    }
     &:before {
       top: -9px;
       transform: translateY(9px) rotate(45deg);
@@ -40,24 +39,36 @@
     &:after {
       top: 9px;
       transform: translateY(-9px) rotate(-45deg);
+      width: 100%;
     }
   }
 }
 
 .menuTrigger {
-  &.open {
+  &.opened {
     z-index: 4;
-  }
-  .menuLabel {
-    padding-left: 10px;
+    &:hover .menuBurger {
+      background-color: transparent;
+      &:before {
+        transform: translateY(9px) rotate(0);
+      }
+      &:after {
+        transform: translateY(-9px) rotate(0);
+      }
+    }
   }
   &:hover {
     cursor: pointer;
     .menuLabel {
       color: #6f6f6f;
     }
-    .menuBurger span {
+    .menuBurger,
+    .menuBurger:before,
+    .menuBurger:after {
       background-color: #6f6f6f;
+    }
+    .menuBurger:after {
+      width: 100%;
     }
     .menuBurger span:nth-child(3) {
       width: 100%;

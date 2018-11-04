@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import Navigation from '../Navigation';
+import Navigation from './Navigation';
 
 export default class Menu extends Component {
   static propTypes = {

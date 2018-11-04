@@ -1,7 +1,8 @@
-import React, { PureComponent } from 'react';
 import classes from 'classnames';
-import logo from './logo.png';
+import { Box } from 'grommet';
+import React, { PureComponent } from 'react';
 import Burger from './Burger';
+import logo from './logo.png';
 import Menu from './Menu';
 import st from './style.module.scss';
 
@@ -20,15 +21,12 @@ export default class Header extends PureComponent {
 
   render() {
     const { menuOpened } = this.state;
-    const menuTrigger = classes(st.menuTrigger, {
-      [st.open]: menuOpened,
-    });
     return (
-      <header className={st.header}>
+      <Box align="center" direction="row" justify="between" height="60px" tag="header">
         <Burger menuOpened={menuOpened} onClick={this.toggleMenu} />
         <img src={logo} alt="logo" />
         <Menu opened={menuOpened} />
-      </header>
+      </Box>
     );
   }
 }
