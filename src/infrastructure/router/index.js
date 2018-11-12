@@ -8,3 +8,9 @@ export default function createRouter({ history = createHistory, initialEntries =
     initialEntries,
   });
 }
+
+const history = createHistory();
+
+export function goBack() {
+  history.goBack();
+}
