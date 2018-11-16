@@ -6,12 +6,20 @@ const notFound = () => ({
   type: NOT_FOUND,
 });
 
+export const routes = {
+  EVENTS_LIST: 'EVENTS_LIST',
+  EVENT: 'EVENT',
+  CHARACTERS: 'CHARACTERS',
+  CONTACTS: 'CONTACTS',
+  SEARCH: 'SEARCH',
+};
+
 const routesMap = {
-  EVENTS_LIST: {
+  [routes.EVENTS_LIST]: {
     path: '/',
     thunk: async dispatch => dispatch(eventsActions.get()),
   },
-  EVENT: {
+  [routes.EVENT]: {
     path: '/events/:id',
     coerceNumbers: true,
     thunk: async (dispatch, getState) => {
@@ -29,11 +37,14 @@ const routesMap = {
       return dispatch(eventsActions.get([id]));
     },
   },
-  CHARACTERS: {
+  [routes.CHARACTERS]: {
     path: '/characters',
   },
-  CONTACTS: {
+  [routes.CONTACTS]: {
     path: '/contacts',
+  },
+  [routes.SEARCH]: {
+    path: '/search',
   },
 };
 

@@ -6,13 +6,13 @@ import classes from 'classnames';
 import navigationConfig from './config';
 import st from './style.module.scss';
 
-export default function Navigation({ opened }) {
+export default function Navigation({ onClick, opened }) {
   const className = classes(st.overlay, {
     [st.opened]: opened,
   });
   return (
     <Box
-      background="light-2"
+      background="dark-1"
       className={className}
       height="100vh"
       pad={{ horizontal: 'small', vertical: 'xlarge' }}
@@ -21,7 +21,15 @@ export default function Navigation({ opened }) {
       <Box tag="nav" className={st.nav}>
         {navigationConfig.map(link => (
           <Heading key={link.path.type} level="2" margin="small" size="large">
-            <NavLink to={link.path}>{link.name}</NavLink>
+            <NavLink
+              exact
+              onClick={onClick}
+              activeClassName={st.active}
+              className={st.navLink}
+              to={link.path}
+            >
+              {link.name}
+            </NavLink>
           </Heading>
         ))}
       </Box>
@@ -30,9 +38,11 @@ export default function Navigation({ opened }) {
 }
 
 Navigation.propTypes = {
+  onClick: PropTypes.func,
   opened: PropTypes.bool,
 };
 
 Navigation.defaultProps = {
+  onClick: null,
   opened: false,
 };

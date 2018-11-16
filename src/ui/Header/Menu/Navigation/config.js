@@ -1,14 +1,16 @@
+import { routes } from 'infrastructure/router/routesMap';
+
 const navigation = [
   {
-    path: { type: 'EVENTS_LIST' },
+    path: { type: [routes.EVENTS_LIST] },
     name: 'Афиша',
   },
   {
-    path: { type: 'CHARACTERS' },
+    path: { type: [routes.CHARACTERS] },
     name: 'Лица',
   },
   {
-    path: { type: 'CONTACTS' },
+    path: { type: [routes.CONTACTS] },
     name: 'Контакты',
   },
 ];
