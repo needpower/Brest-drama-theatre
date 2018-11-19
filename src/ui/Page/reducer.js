@@ -2,7 +2,7 @@ import { NOT_FOUND } from 'redux-first-router';
 import { routes } from 'infrastructure/router/routesMap';
 
 const pages = {
-  [routes.EVENTS_LIST]: 'Events/Page/List',
+  [routes.EVENTS_LIST]: 'Events/Page/index',
   [routes.CHARACTERS]: 'Characters/Page/List',
   [routes.CONTACTS]: 'Contacts/index',
   [routes.SEARCH]: 'Search/index',

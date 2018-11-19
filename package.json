@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "cuid": "^2.1.4",
+    "date-fns": "^1.29.0",
     "express": "^4.16.4",
     "grommet": "^2.0.0",
     "grommet-icons": "^3.2.0",

@@ -1,4 +1,5 @@
 import eventsActions from 'Events/actions';
+import imagesActions from 'Images/actions';
 import { find } from 'lodash';
 import { NOT_FOUND } from 'redux-first-router';
 
@@ -17,7 +18,17 @@ export const routes = {
 const routesMap = {
   [routes.EVENTS_LIST]: {
     path: '/',
-    thunk: async dispatch => dispatch(eventsActions.get()),
+    thunk: async (dispatch, getState) => dispatch(eventsActions.get())
+      .then(() => {
+        const mainEventsPosters = getState()
+          .domain.events.filter(event => event.isMainEvent)
+          .map(mainEvent => mainEvent.poster);
+        return mainEventsPosters;
+      })
+      .then(mainEventsPosters => dispatch(imagesActions.get(mainEventsPosters)))
+      .catch((error) => {
+        throw new Error(error);
+      }),
   },
   [routes.EVENT]: {
     path: '/events/:id',

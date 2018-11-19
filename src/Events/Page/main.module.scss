@@ -1,0 +1,38 @@
+.mainEvent {
+  position: relative;
+  overflow: hidden;
+}
+
+.caption {
+  bottom: 0;
+  color: #fff;
+  left: 0;
+  padding: 30px;
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+}
+
+.poster {
+  transition: all 1.3s 0s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.link {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  &:hover + .poster {
+    transform: scale(1.1);
+  }
+}
+
+.title {
+  font-size: 45px;
+  line-height: 45px;
+  margin-bottom: 25px;
+}
+
+.description {
+  font-size: 30px;
+}

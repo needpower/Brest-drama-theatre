@@ -9,6 +9,14 @@
 
 export const MODEL_NAME = 'images';
 
+export const defaultImage = {
+  id: 100000,
+  path: '/posters/placeholder.png',
+  height: 800,
+  weight: 0.6,
+  width: 800,
+};
+
 /**
  * Class representing a single image
  * @param {Image} image
