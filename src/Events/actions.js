@@ -37,7 +37,7 @@ const eventsActionCreators = {
       dispatch(fetchStart());
 
       return getItems('events', {
-        params: { ids },
+        params: { ids: JSON.stringify(ids) },
       })
         .then(events => dispatch(fetchSuccess(events.data, { replace: replaceExisting })))
         .catch(error => dispatch(fetchError(error)));

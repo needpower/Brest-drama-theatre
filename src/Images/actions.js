@@ -26,10 +26,10 @@ const imagesActionCreators = {
     return (dispatch) => {
       dispatch(fetchStart());
 
-      return getItems('getImages', {
-        params: { ids },
+      return getItems('images', {
+        params: { ids: JSON.stringify(ids) },
       })
-        .then(images => dispatch(fetchSuccess(images, { replace: replaceExisting })))
+        .then(images => dispatch(fetchSuccess(images.data, { replace: replaceExisting })))
         .catch(error => dispatch(fetchError(error)));
     };
   },
