@@ -10,7 +10,7 @@ import actions, {
 } from '../actions';
 import { eventData1, eventData2 } from '../__mocks__/payload';
 
-jest.mock('../../infrastructure/http');
+jest.mock('infrastructure/http');
 
 describe('Theatre events actions', () => {
   let store;

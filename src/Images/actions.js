@@ -22,7 +22,7 @@ const imagesActionCreators = {
   /**
    * @param {number[]} [ids] If not provided, all events will be fetched
    */
-  get(ids = [], replaceExisting = true) {
+  get(ids, replaceExisting = true) {
     return (dispatch) => {
       dispatch(fetchStart());
 
