@@ -1,10 +1,10 @@
+import { getMainEvents, getOtherEvents } from 'Events/selectors';
+import { eventType } from 'Events/types';
 import { Box } from 'grommet';
 import { imageType } from 'Images/types';
 import { arrayOf } from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { getMainEvents, getOtherEvents } from '../selectors';
-import { eventType } from '../types';
 import EventsList from './List';
 import MainEvents from './Main';
 
