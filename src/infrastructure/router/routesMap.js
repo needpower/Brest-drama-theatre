@@ -34,18 +34,8 @@ const routesMap = {
     path: '/events/:id',
     coerceNumbers: true,
     thunk: async (dispatch, getState) => {
-      const {
-        location: {
-          payload: { id },
-        },
-        events,
-      } = getState();
-
-      if (!find(events, { id })) {
-        return dispatch(notFound());
-      }
-
-      return dispatch(eventsActions.get([id]));
+      const { id } = getState().location.payload;
+      return dispatch(eventsActions.getOne(id));
     },
   },
   [routes.CHARACTERS]: {

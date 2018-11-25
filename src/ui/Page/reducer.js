@@ -3,6 +3,7 @@ import { routes } from 'infrastructure/router/routesMap';
 
 const pages = {
   [routes.EVENTS_LIST]: 'Events/Page/index',
+  [routes.EVENT]: 'Events/Page/Single',
   [routes.CHARACTERS]: 'Characters/Page/List',
   [routes.CONTACTS]: 'Contacts/index',
   [routes.SEARCH]: 'Search/index',

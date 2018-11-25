@@ -32,14 +32,31 @@ const eventsActionCreators = {
   /**
    * @param {number[]} [ids] If not provided, all events will be fetched
    */
-  get(ids = [], replaceExisting = true) {
+  get(ids, replaceExisting = true) {
     return (dispatch) => {
       dispatch(fetchStart());
 
       return getItems('events', {
         params: { ids: JSON.stringify(ids) },
       })
-        .then(events => dispatch(fetchSuccess(events.data, { replace: replaceExisting })))
+        .then(events => dispatch(fetchSuccess(events, { replace: replaceExisting })))
+        .catch(error => dispatch(fetchError(error)));
+    };
+  },
+
+  /**
+   *
+   * @param {number} id
+   * @param {boolean} [replaceExisting=false]
+   */
+  getOne(id, replaceExisting = false) {
+    return (dispatch) => {
+      dispatch(fetchStart());
+
+      return getItems('event', {
+        params: { id },
+      })
+        .then(event => dispatch(fetchSuccess(event, { replace: replaceExisting })))
         .catch(error => dispatch(fetchError(error)));
     };
   },
