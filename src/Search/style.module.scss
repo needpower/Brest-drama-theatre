@@ -1,5 +1,17 @@
+.searchContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 80%;
+}
+
 .searchInput {
   border-bottom: 2px solid #ffffff;
   color: #ffffff;
   font-size: 40px;
+}
+
+.searchPage {
+  left: 0;
+  position: absolute;
+  top: 0;
 }
