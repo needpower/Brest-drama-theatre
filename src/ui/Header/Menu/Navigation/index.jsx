@@ -15,7 +15,7 @@ export default function Navigation({ onClick, opened }) {
       background="dark-1"
       className={className}
       height="100vh"
-      pad={{ horizontal: 'small', vertical: 'xlarge' }}
+      pad={{ vertical: 'xlarge' }}
       width="100%"
     >
       <Box tag="nav" className={st.nav}>
