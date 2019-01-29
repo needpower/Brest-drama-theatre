@@ -5,7 +5,7 @@
     "import/resolver": {
       "babel-module": {},
       "node": {
-        "paths": ["src"]
+        "paths": ["visitor-app/src"]
       }
     }
   },
