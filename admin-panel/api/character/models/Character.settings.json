@@ -1,0 +1,41 @@
+{
+  "connection": "default",
+  "collectionName": "characters",
+  "info": {
+    "name": "character",
+    "description": "Represent a single person who has to do with theater"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "default": "",
+      "type": "enumeration",
+      "enum": [
+        "director",
+        " actor",
+        " musician"
+      ]
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "events": {
+      "collection": "event",
+      "via": "characters"
+    },
+    "projects": {
+      "collection": "event",
+      "via": "author"
+    }
+  }
+}

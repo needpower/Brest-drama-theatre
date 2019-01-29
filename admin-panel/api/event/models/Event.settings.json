@@ -1,0 +1,80 @@
+{
+  "connection": "default",
+  "collectionName": "events",
+  "info": {
+    "name": "event",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "ageRestrictions": {
+      "default": "",
+      "type": "integer"
+    },
+    "author": {
+      "model": "character"
+    },
+    "characters": {
+      "collection": "character",
+      "via": "events",
+      "dominant": true
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "duration": {
+      "default": "",
+      "type": "integer",
+      "required": true
+    },
+    "genre": {
+      "default": "",
+      "type": "string"
+    },
+    "hall": {
+      "default": "",
+      "type": "enumeration",
+      "required": true,
+      "enum": ["большой", "малый"]
+    },
+    "gallery": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "isMainEvent": {
+      "default": false,
+      "type": "boolean"
+    },
+    "language": {
+      "default": "",
+      "type": "enumeration",
+      "enum": ["ru-RU", "by-BY", "en-US"]
+    },
+    "poster": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "price": {
+      "default": "",
+      "type": "integer"
+    },
+    "startAt": {
+      "default": "",
+      "type": "date"
+    },
+    "title": {
+      "default": "",
+      "type": "string",
+      "required": true
+    }
+  }
+}

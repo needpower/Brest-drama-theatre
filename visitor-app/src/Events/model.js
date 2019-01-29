@@ -1,4 +1,6 @@
-import { union, unionWith, difference, differenceWith, isEqual } from 'lodash';
+import {
+  union, unionWith, difference, differenceWith, isEqual,
+} from 'lodash';
 
 /**
  * @typedef Language
@@ -31,6 +33,7 @@ import { union, unionWith, difference, differenceWith, isEqual } from 'lodash';
  * @property {?string} genre
  * @property {Hall} hall - In what hall event will be played
  * @property {number[]} gallery - photo gallery from past event
+ * @property {bool} isMainEvent - show on main poster or not
  * @property {Language} language
  * @property {number} poster - A path to cover of event
  * @property {?(number[])} price. Several prices while no online ticket sale
