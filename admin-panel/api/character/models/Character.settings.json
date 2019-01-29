@@ -36,6 +36,12 @@
     "projects": {
       "collection": "event",
       "via": "author"
+    },
+    "photos": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
     }
   }
 }

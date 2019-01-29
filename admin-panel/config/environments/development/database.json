@@ -9,10 +9,11 @@
         "srv": false,
         "port": "5432",
         "database": "brest_drama_theatre",
-        "username": "brest_drama_theatre",
-        "password": "21081993ujl"
+        "username": "postgres",
+        "password": "postgres"
       },
       "options": {
+        "debug": false,
         "ssl": false
       }
     }

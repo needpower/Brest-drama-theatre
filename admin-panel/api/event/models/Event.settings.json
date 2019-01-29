@@ -16,12 +16,13 @@
       "type": "integer"
     },
     "author": {
-      "model": "character"
+      "model": "character",
+      "via": "projects"
     },
     "characters": {
       "collection": "character",
-      "via": "events",
-      "dominant": true
+      "dominant": true,
+      "via": "events"
     },
     "description": {
       "default": "",
@@ -40,7 +41,10 @@
       "default": "",
       "type": "enumeration",
       "required": true,
-      "enum": ["большой", "малый"]
+      "enum": [
+        "большой",
+        "малый"
+      ]
     },
     "gallery": {
       "collection": "file",
@@ -55,7 +59,11 @@
     "language": {
       "default": "",
       "type": "enumeration",
-      "enum": ["ru-RU", "by-BY", "en-US"]
+      "enum": [
+        "ru-RU",
+        "by-BY",
+        "en-US"
+      ]
     },
     "poster": {
       "model": "file",
