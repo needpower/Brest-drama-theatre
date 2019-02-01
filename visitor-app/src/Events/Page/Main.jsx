@@ -1,21 +1,21 @@
 import { format } from 'date-fns';
+import { baseURL } from 'infrastructure/http';
 import { eventType } from 'Events/types';
 import { Box, Grid, Image } from 'grommet';
 import { defaultImage } from 'Images/model';
-import { imageType } from 'Images/types';
 import { routes } from 'infrastructure/router/routesMap';
 import { arrayOf } from 'prop-types';
 import React from 'react';
 import Link from 'redux-first-router-link';
 import st from './main.module.scss';
 
-function findPoster(event, posters) {
-  return posters.find(poster => poster.id === event.poster) || defaultImage;
+function findPoster(event) {
+  return event.poster ? `${baseURL}${event.poster.url}` : defaultImage.path;
 }
 
 const ru = require('date-fns/locale/ru');
 
-export default function MainEvents({ events, posters }) {
+export default function MainEvents({ events }) {
   if (!(events && events.length)) {
     return null;
   }
@@ -35,42 +35,52 @@ export default function MainEvents({ events, posters }) {
     >
       <Box gridArea="event1" background="red" className={st.mainEvent}>
         <Link to={{ type: [routes.EVENT], payload: { id: events[0].id } }} className={st.link} />
-        <Image className={st.poster} fit="cover" src={findPoster(events[0], posters).path} />
+        <Image className={st.poster} fit="cover" src={findPoster(events[0])} />
         <Box className={st.caption}>
           <div className={st.title}>{events[0].title}</div>
-          <div className={st.description}>{format(events[0].start, 'D MMMM', { locale: ru })}</div>
+          <div className={st.description}>
+            {format(events[0].startAt, 'D MMMM', { locale: ru })}
+          </div>
         </Box>
       </Box>
       <Box gridArea="event2" background="green" className={st.mainEvent}>
         <Link to={{ type: [routes.EVENT], payload: { id: events[1].id } }} className={st.link} />
-        <Image className={st.poster} fit="cover" src={findPoster(events[1], posters).path} />
+        <Image className={st.poster} fit="cover" src={findPoster(events[1])} />
         <Box className={st.caption}>
           <div className={st.title}>{events[1].title}</div>
-          <div className={st.description}>{format(events[1].start, 'D MMMM', { locale: ru })}</div>
+          <div className={st.description}>
+            {format(events[1].startAt, 'D MMMM', { locale: ru })}
+          </div>
         </Box>
       </Box>
       <Box gridArea="event3" background="brand" className={st.mainEvent}>
         <Link to={{ type: [routes.EVENT], payload: { id: events[2].id } }} className={st.link} />
-        <Image className={st.poster} fit="cover" src={findPoster(events[2], posters).path} />
+        <Image className={st.poster} fit="cover" src={findPoster(events[2])} />
         <Box className={st.caption}>
           <div className={st.title}>{events[2].title}</div>
-          <div className={st.description}>{format(events[2].start, 'D MMMM', { locale: ru })}</div>
+          <div className={st.description}>
+            {format(events[2].startAt, 'D MMMM', { locale: ru })}
+          </div>
         </Box>
       </Box>
       <Box gridArea="event4" background="accent-2" className={st.mainEvent}>
         <Link to={{ type: [routes.EVENT], payload: { id: events[3].id } }} className={st.link} />
-        <Image className={st.poster} fit="cover" src={findPoster(events[3], posters).path} />
+        <Image className={st.poster} fit="cover" src={findPoster(events[3])} />
         <Box className={st.caption}>
           <div className={st.title}>{events[3].title}</div>
-          <div className={st.description}>{format(events[3].start, 'D MMMM', { locale: ru })}</div>
+          <div className={st.description}>
+            {format(events[3].startAt, 'D MMMM', { locale: ru })}
+          </div>
         </Box>
       </Box>
       <Box gridArea="event5" background="accent-1" className={st.mainEvent}>
         <Link to={{ type: [routes.EVENT], payload: { id: events[4].id } }} className={st.link} />
-        <Image className={st.poster} fit="cover" src={findPoster(events[4], posters).path} />
+        <Image className={st.poster} fit="cover" src={findPoster(events[4])} />
         <Box className={st.caption}>
           <div className={st.title}>{events[4].title}</div>
-          <div className={st.description}>{format(events[4].start, 'D MMMM', { locale: ru })}</div>
+          <div className={st.description}>
+            {format(events[4].startAt, 'D MMMM', { locale: ru })}
+          </div>
         </Box>
       </Box>
     </Grid>
@@ -79,5 +89,4 @@ export default function MainEvents({ events, posters }) {
 
 MainEvents.propTypes = {
   events: arrayOf(eventType).isRequired,
-  posters: arrayOf(imageType).isRequired,
 };

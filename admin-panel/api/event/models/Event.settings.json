@@ -38,9 +38,8 @@
       "type": "string"
     },
     "hall": {
-      "default": "",
+      "default": "большой",
       "type": "enumeration",
-      "required": true,
       "enum": [
         "большой",
         "малый"

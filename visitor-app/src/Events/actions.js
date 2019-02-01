@@ -39,7 +39,7 @@ const eventsActionCreators = {
       return getItems('events', {
         params: { ids: JSON.stringify(ids) },
       })
-        .then(events => dispatch(fetchSuccess(events, { replace: replaceExisting })))
+        .then(events => dispatch(fetchSuccess(events.data, { replace: replaceExisting })))
         .catch(error => dispatch(fetchError(error)));
     };
   },
@@ -53,10 +53,8 @@ const eventsActionCreators = {
     return (dispatch) => {
       dispatch(fetchStart());
 
-      return getItems('event', {
-        params: { id },
-      })
-        .then(event => dispatch(fetchSuccess(event, { replace: replaceExisting })))
+      return getItems(`events/${id}`)
+        .then(event => dispatch(fetchSuccess(event.data, { replace: replaceExisting })))
         .catch(error => dispatch(fetchError(error)));
     };
   },
@@ -72,7 +70,7 @@ const eventsActionCreators = {
         post('createEvent', event)
           // Need to pass client generated ky for optimistic rendering,
           // i.e when created event will be returned from server,
-          // we can replace temporary with saved one
+          // we can replace temporary with the saved one
           .then(createdEvent => dispatch(createSuccess(createdEvent, createdEvent.id)))
           .catch(error => dispatch(createError(error, event)))
       );

@@ -16,15 +16,6 @@
       "type": "string",
       "required": true
     },
-    "role": {
-      "default": "",
-      "type": "enumeration",
-      "enum": [
-        "director",
-        " actor",
-        " musician"
-      ]
-    },
     "description": {
       "default": "",
       "type": "text"

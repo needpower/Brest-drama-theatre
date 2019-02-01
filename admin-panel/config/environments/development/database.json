@@ -7,7 +7,7 @@
         "client": "postgres",
         "host": "127.0.0.1",
         "srv": false,
-        "port": "5432",
+        "port": "5433",
         "database": "brest_drama_theatre",
         "username": "postgres",
         "password": "postgres"

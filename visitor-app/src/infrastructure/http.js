@@ -1,10 +1,11 @@
 import axios from 'axios';
 
+export const baseURL = 'http://localhost:1337';
 const httpClient = axios.create({
-  baseURL: 'https://706ee0cc-ab13-4a01-a42d-0a534deafe14.mock.pstmn.io/',
+  baseURL: `${baseURL}/`,
   headers: {
     'Content-Type': 'application/json',
-    'X-Api-Key': '860c5a66910d4013afff61b4a274103b',
+    // 'X-Api-Key': '860c5a66910d4013afff61b4a274103b',
   },
 });
 

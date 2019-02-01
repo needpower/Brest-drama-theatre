@@ -25,7 +25,7 @@ const routesMap = {
           .map(mainEvent => mainEvent.poster);
         return mainEventsPosters;
       })
-      .then(mainEventsPosters => dispatch(imagesActions.get(mainEventsPosters)))
+    // .then(mainEventsPosters => dispatch(imagesActions.get(mainEventsPosters)))
       .catch((error) => {
         throw new Error(error);
       }),
