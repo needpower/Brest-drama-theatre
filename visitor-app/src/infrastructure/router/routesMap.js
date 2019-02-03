@@ -1,11 +1,5 @@
 import eventsActions from 'Events/actions';
-import imagesActions from 'Images/actions';
-import { find } from 'lodash';
 import { NOT_FOUND } from 'redux-first-router';
-
-const notFound = () => ({
-  type: NOT_FOUND,
-});
 
 export const routes = {
   EVENTS_LIST: 'EVENTS_LIST',
@@ -48,5 +42,11 @@ const routesMap = {
     path: '/search',
   },
 };
+
+function notFound() {
+  return {
+    type: NOT_FOUND,
+  };
+}
 
 export default routesMap;
