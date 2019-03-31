@@ -18,7 +18,11 @@ function SingleEvent({ event }) {
 }
 
 SingleEvent.propTypes = {
-  event: eventType.isRequired,
+  event: eventType,
+};
+
+SingleEvent.defaultProps = {
+  event: undefined,
 };
 
 export default connect(state => ({

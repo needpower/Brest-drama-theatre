@@ -12,14 +12,8 @@ export const routes = {
 const routesMap = {
   [routes.EVENTS_LIST]: {
     path: '/',
-    thunk: async (dispatch, getState) => dispatch(eventsActions.get())
-      .then(() => {
-        const mainEventsPosters = getState()
-          .domain.events.filter(event => event.isMainEvent)
-          .map(mainEvent => mainEvent.poster);
-        return mainEventsPosters;
-      })
-    // .then(mainEventsPosters => dispatch(imagesActions.get(mainEventsPosters)))
+    thunk: async dispatch => dispatch(eventsActions.get())
+      .then(() => changeTitle())
       .catch((error) => {
         throw new Error(error);
       }),
@@ -29,7 +23,16 @@ const routesMap = {
     coerceNumbers: true,
     thunk: async (dispatch, getState) => {
       const { id } = getState().location.payload;
-      return dispatch(eventsActions.getOne(id));
+      return dispatch(eventsActions.getOne(id))
+        .then(() => {
+          const currentEvent = getState().domain.events.find(
+            event => event.id === getState().location.payload.id,
+          );
+          changeTitle(currentEvent.title);
+        })
+        .catch((error) => {
+          throw new Error(error);
+        });
     },
   },
   [routes.CHARACTERS]: {
@@ -47,6 +50,15 @@ function notFound() {
   return {
     type: NOT_FOUND,
   };
+}
+
+function changeTitle(newTitle) {
+  const defaultTitle = 'Брестский академический театр драмы';
+  if (!newTitle) {
+    document.title = defaultTitle;
+  } else {
+    document.title = `${newTitle} \u2013 ${defaultTitle}`;
+  }
 }
 
 export default routesMap;

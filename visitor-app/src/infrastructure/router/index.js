@@ -1,16 +1,16 @@
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import { connectRoutes } from 'redux-first-router';
 import routesMap from './routesMap';
 
-export default function createRouter({ history = createHistory, initialEntries = '' } = {}) {
+export default function createRouter({ history = createBrowserHistory, initialEntries = '' } = {}) {
   return connectRoutes(routesMap, {
-    createHistory: history,
+    createBrowserHistory: history,
     initialEntries,
+    title: state => state.title,
   });
 }
 
-const history = createHistory();
-
+const history = createBrowserHistory();
 export function goBack() {
   history.goBack();
 }

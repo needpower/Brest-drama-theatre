@@ -2,7 +2,9 @@ import reduxCRUD from 'redux-crud';
 import { find } from 'lodash';
 import { updateItemInArray } from 'infrastructure/reducer';
 import Event, { MODEL_NAME } from './model';
-import { addImagesType, deleteImagesType, addCharacterType, removeCharacterType } from './actions';
+import {
+  addImagesType, deleteImagesType, addCharacterType, removeCharacterType,
+} from './actions';
 
 const CRUDreducer = reduxCRUD.List.reducersFor(MODEL_NAME);
 
